@@ -1,0 +1,503 @@
+﻿UG to STEP
+! INFO-     NX STEP AP214 - V11.0
+! INFO-      
+! INFO-     Start of Translation: 27-AUG-2021  12:06:41 PM
+! INFO-      
+! STATUS-   Converting Part: @DB/F10161932/-
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: @DB/F10161932/- 
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     1
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Component ...................:     3
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=klvBP_ep6MVi_C PRH=kplBP_ep6MVi_C PN=F10161931 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     1
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Component ...................:    30
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             37
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! WARNING-  IM0503 Assembly contains Pre-V10 components   :  %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file" 
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=Yjb9aenH6MVi_C PRH=YnR9aenH6MVi_C PN=F10148123 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Component ...................:    13
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             23
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=E4atuy4v6MVi_C PRH=E8Qtuy4v6MVi_C PN=F10112322 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=04pBP_ep6MVi_C PRH=08vBP_ep6MVi_C PN=F10161928 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     9
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             18
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=EetBfo516MVi_C PRH=EijBfo516MVi_C PN=F10161766 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     1
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Component ...................:     8
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:    12
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             28
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=U9rBP_ep6MVi_C PRH=kBhBP_ep6MVi_C PN=F10161929 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=G6P9BAGO6MVi_C PRH=G_A9BAGO6MVi_C PN=FC0005874 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     2
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     2
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             12
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=G6L9BAGO6MVi_C PRH=G6M9BAGO6MVi_C PN=FC0005872 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     2
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     2
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             12
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=kRoBP_ep6MVi_C PRH=kRuBP_ep6MVi_C PN=F10161930 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=H5atx5j_6MVi_C PRH=H9Qtx5j_6MVi_C PN=FC0067035 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=Hpatx5j_6MVi_C PRH=HtQtx5j_6MVi_C PN=FC0067034 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=0Tf188j16MVi_C PRH=0XV188j16MVi_C PN=FC0073750 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=xfat5jSJ6MVi_C PRH=xjQt5jSJ6MVi_C PN=F10109316 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     1
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              9
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=yWTtGPXA6MVi_C PRH=yWctGPXA6MVi_C PN=FC0067387 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=C4bJIlh76MVi_C PRH=C8UJIlh76MVi_C PN=FC0043164 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     2
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             11
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=z2Y9eqwg6MVi_C PRH=z_X9eqwg6MVi_C PN=F10149976 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=n8d1zBCL6MVi_C PRH=3AT1zBCL6MVi_C PN=F10125024 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=Zdd5d$vS6MVi_C PRH=ZhT5d$vS6MVi_C PN=F10140726 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     3
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             12
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=ZJe5d$vS6MVi_C PRH=ZNU5d$vS6MVi_C PN=F10140725 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     2
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             11
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=GqD9BAGO6MVi_C PRH=GqE9BAGO6MVi_C PN=FC0005836 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     2
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     2
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             12
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=GyH9BAGO6MVi_C PRH=GyI9BAGO6MVi_C PN=FC0005854 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     2
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     2
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             12
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=csD9RKUt6MVi_C PRH=csE9RKUt6MVi_C PN=FC0016121 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             10
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=0RjBfo516MVi_C PRH=0RpBfo516MVi_C PN=F10161763 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     5
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             14
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: %UGMGR=V3.2 PH=E1kBfo516MVi_C PRH=E5qBfo516MVi_C PN=F10161762 PRN=- RT="has shape" AT="UG master part file"  
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Reference Set ...............:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     5
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             14
+! STATUS-    
+! STATUS-   Converting to Output Form (Phase 2 of 3): 27-AUG-2021 12:06:50 PM
+! STATUS-    
+! STATUS-    
+! STATUS-   Generating UG geometry and placing them in parts
+! STATUS-    
+! SUMMARY-   
+! SUMMARY-    STEP Header Information
+! SUMMARY-   
+! SUMMARY-  Description      Unknown
+! SUMMARY-  Imp_Level        1
+! SUMMARY-  File_Name        F10161932--_1-ASSY_ CMS2 ETL_ 16X16 SENSOR SUB-ASSY TO Al-N GLUING ASSY.stp
+! SUMMARY-  Date             2021-08-27T12:06:50-05:00
+! SUMMARY-  Author           Unknown
+! SUMMARY-  Organization     Unknown
+! SUMMARY-  Pre_Version      ST-DEVELOPER v16
+! SUMMARY-  Orig_System      SIEMENS PLM Software NX 11.0
+! SUMMARY-  Authorization    Unknown
+! SUMMARY-   
+! SUMMARY-    Summary of STEP Entities
+! SUMMARY-   
+! SUMMARY-  Entity Type                                                   Count
+! SUMMARY-  -----------                                                   ------
+! SUMMARY-  advanced_face ..............................................:    639
+! SUMMARY-  application_context ........................................:      1
+! SUMMARY-  axis2_placement_3d .........................................:   1081
+! SUMMARY-  b_spline_curve_with_knots ..................................:    164
+! SUMMARY-  b_spline_curve_with_knots_and_rational_b_spline_curve ......:     27
+! SUMMARY-  b_spline_surface_with_knots ................................:      3
+! SUMMARY-  b_spline_surface_with_knots_and_rational_b_spline_surface ..:      2
+! SUMMARY-  cartesian_point ............................................:   6761
+! SUMMARY-  circle .....................................................:    392
+! SUMMARY-  closed_shell ...............................................:     54
+! SUMMARY-  conical_surface ............................................:     92
+! SUMMARY-  context_dependent_shape_representation .....................:     54
+! SUMMARY-  conversion_based_unit_and_length_unit ......................:      1
+! SUMMARY-  conversion_based_unit_and_plane_angle_unit .................:      1
+! SUMMARY-  cylindrical_surface ........................................:    168
+! SUMMARY-  dimensional_exponents ......................................:      2
+! SUMMARY-  direction ..................................................:   2873
+! SUMMARY-  edge_curve .................................................:   1294
+! SUMMARY-  edge_loop ..................................................:    887
+! SUMMARY-  face_bound .................................................:    443
+! SUMMARY-  face_outer_bound ...........................................:    458
+! SUMMARY-  geometric_representation_context_and_global_uncertainty_a ..:     25
+! SUMMARY-  item_defined_transformation ................................:     54
+! SUMMARY-  length_measure_with_unit ...................................:      1
+! SUMMARY-  length_unit_and_si_unit ....................................:      1
+! SUMMARY-  line .......................................................:    711
+! SUMMARY-  manifold_solid_brep ........................................:     54
+! SUMMARY-  next_assembly_usage_occurrence .............................:     54
+! SUMMARY-  oriented_edge ..............................................:   2588
+! SUMMARY-  plane ......................................................:    367
+! SUMMARY-  plane_angle_measure_with_unit ..............................:      1
+! SUMMARY-  plane_angle_unit_and_si_unit ...............................:      1
+! SUMMARY-  product ....................................................:     25
+! SUMMARY-  product_context ............................................:     25
+! SUMMARY-  product_definition .........................................:     25
+! SUMMARY-  product_definition_context .................................:     25
+! SUMMARY-  product_definition_formation_with_specified_source .........:     25
+! SUMMARY-  product_definition_shape ...................................:     79
+! SUMMARY-  product_related_product_category ...........................:     25
+! SUMMARY-  representation_relationship_with_transformation_and_shape ..:     54
+! SUMMARY-  shape_representation .......................................:     25
+! SUMMARY-  si_unit_and_solid_angle_unit ...............................:      1
+! SUMMARY-  toroidal_surface ...........................................:      7
+! SUMMARY-  uncertainty_measure_with_unit ..............................:     25
+! SUMMARY-  vector .....................................................:    711
+! SUMMARY-  vertex_loop ................................................:     14
+! SUMMARY-  vertex_point ...............................................:    931
+! SUMMARY-                                                               -------
+! SUMMARY-  Total                                                          21251
+! INFO-      
+! INFO-     User interface/default file
+! INFO-     Bspline aprx. value in effect for this translation : 2.540000e-002 mm
+! INFO-      
+! INFO-     Total number of solids input for this translation  :      58
+! INFO-      
+! INFO-     Number of solids processed without problems        :      58
+! INFO-      
+! INFO-     Number of solids with problems output as sheets    :       0
+! INFO-      
+! INFO-     Number of solids not processed                     :       0
+! INFO-      
+! INFO-     End of Translation: 27-AUG-2021  12:06:50 PM
+! INFO-      

@@ -1,0 +1,96 @@
+﻿UG to STEP
+! INFO-     NX STEP AP214 - V11.0
+! INFO-      
+! INFO-     Start of Translation: 3-SEP-2021  12:53:43 PM
+! INFO-      
+! STATUS-   Converting Part: @DB/F10161928/-
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-  For Part: @DB/F10161928/- 
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Part Attribute ..............:     1
+! SUMMARY-  Font ........................:     1
+! SUMMARY-  Color Table .................:     2
+! SUMMARY-  Coordinate System ...........:     2
+! SUMMARY-  Parameter ...................:     1
+! SUMMARY-  Matrix ......................:     1
+! SUMMARY-  Solid .......................:
+! SUMMARY-     Body .....................:     9
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             17
+! STATUS-    
+! STATUS-   Converting to Output Form (Phase 2 of 3): 3-SEP-2021 12:53:46 PM
+! STATUS-    
+! STATUS-    
+! STATUS-   Generating UG geometry and placing them in parts
+! STATUS-    
+! SUMMARY-   
+! SUMMARY-    STEP Header Information
+! SUMMARY-   
+! SUMMARY-  Description      Unknown
+! SUMMARY-  Imp_Level        1
+! SUMMARY-  File_Name        F10161928--_1-FIXTURE_ CMS2 ETL_ 16X16 SENSOR SUB-ASSY ALIGNMENT FIXTURE.stp
+! SUMMARY-  Date             2021-09-03T12:53:46-05:00
+! SUMMARY-  Author           Unknown
+! SUMMARY-  Organization     Unknown
+! SUMMARY-  Pre_Version      ST-DEVELOPER v16
+! SUMMARY-  Orig_System      SIEMENS PLM Software NX 11.0
+! SUMMARY-  Authorization    Unknown
+! SUMMARY-   
+! SUMMARY-    Summary of STEP Entities
+! SUMMARY-   
+! SUMMARY-  Entity Type                                                   Count
+! SUMMARY-  -----------                                                   ------
+! SUMMARY-  advanced_face ..............................................:    187
+! SUMMARY-  application_context ........................................:      1
+! SUMMARY-  axis2_placement_3d .........................................:    317
+! SUMMARY-  b_spline_curve_with_knots ..................................:     13
+! SUMMARY-  cartesian_point ............................................:   1694
+! SUMMARY-  circle .....................................................:    129
+! SUMMARY-  closed_shell ...............................................:      9
+! SUMMARY-  conical_surface ............................................:      1
+! SUMMARY-  conversion_based_unit_and_plane_angle_unit .................:      1
+! SUMMARY-  cylindrical_surface ........................................:     70
+! SUMMARY-  dimensional_exponents ......................................:      1
+! SUMMARY-  direction ..................................................:    889
+! SUMMARY-  edge_curve .................................................:    397
+! SUMMARY-  edge_loop ..................................................:    322
+! SUMMARY-  face_bound .................................................:    207
+! SUMMARY-  face_outer_bound ...........................................:    116
+! SUMMARY-  geometric_representation_context_and_global_uncertainty_a ..:      1
+! SUMMARY-  length_unit_and_si_unit ....................................:      1
+! SUMMARY-  line .......................................................:    255
+! SUMMARY-  manifold_solid_brep ........................................:      9
+! SUMMARY-  oriented_edge ..............................................:    794
+! SUMMARY-  plane ......................................................:    116
+! SUMMARY-  plane_angle_measure_with_unit ..............................:      1
+! SUMMARY-  plane_angle_unit_and_si_unit ...............................:      1
+! SUMMARY-  product ....................................................:      1
+! SUMMARY-  product_context ............................................:      1
+! SUMMARY-  product_definition .........................................:      1
+! SUMMARY-  product_definition_context .................................:      1
+! SUMMARY-  product_definition_formation_with_specified_source .........:      1
+! SUMMARY-  product_definition_shape ...................................:      1
+! SUMMARY-  product_related_product_category ...........................:      1
+! SUMMARY-  si_unit_and_solid_angle_unit ...............................:      1
+! SUMMARY-  uncertainty_measure_with_unit ..............................:      1
+! SUMMARY-  vector .....................................................:    255
+! SUMMARY-  vertex_loop ................................................:      1
+! SUMMARY-  vertex_point ...............................................:    296
+! SUMMARY-                                                               -------
+! SUMMARY-  Total                                                           6093
+! INFO-      
+! INFO-     User interface/default file
+! INFO-     Bspline aprx. value in effect for this translation : 2.540000e-002 mm
+! INFO-      
+! INFO-     Total number of solids input for this translation  :       9
+! INFO-      
+! INFO-     Number of solids processed without problems        :       9
+! INFO-      
+! INFO-     Number of solids with problems output as sheets    :       0
+! INFO-      
+! INFO-     Number of solids not processed                     :       0
+! INFO-      
+! INFO-     End of Translation: 3-SEP-2021  12:53:47 PM
+! INFO-      
