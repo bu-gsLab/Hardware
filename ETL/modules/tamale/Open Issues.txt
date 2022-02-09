@@ -1,0 +1,2 @@
+  - Thickness of ETROC2
+  - Orientation & placement of ETROC2 on ETL Sensor
