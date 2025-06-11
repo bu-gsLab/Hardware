@@ -3653,9 +3653,9 @@
 	(footprint "LOGO"
 		(layer "F.Cu")
 		(uuid "e493fc60-1b82-48d3-a103-6be9a86fab46")
-		(at 172.75 118.75 90)
+		(at 172.75 117 90)
 		(property "Reference" "G***"
-			(at 0 0 270)
+			(at 0 0 -90)
 			(layer "Dwgs.User")
 			(uuid "cc8c9df5-675a-473d-9053-d719515ee8b2")
 			(effects
@@ -3666,7 +3666,7 @@
 			)
 		)
 		(property "Value" "LOGO"
-			(at 0.75 0 270)
+			(at 0.75 0 -90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "8e3b5623-8af4-4afd-b6ea-0893870fb6c9")
@@ -4528,8 +4528,8 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "Gantry Hub Interconnect PCB V1\nC. Fangmeier 6/2024"
-		(at 177.5 106 90)
+	(gr_text "Gantry Hub Interconnect PCB\nVersion 1.0\nC. Fangmeier 6/2024"
+		(at 177.5 104.25 90)
 		(layer "F.SilkS")
 		(uuid "e8319285-34b8-4cbc-95e0-df0626e0155d")
 		(effects
