@@ -3,3 +3,11 @@ lockfile.lck
 *OldVersions/
 *archive/
 *export/
+*-backups/
+*.stp
+*.step
+*.STP
+*.STEP
+*.3mf
+*.stl
+*.zip
