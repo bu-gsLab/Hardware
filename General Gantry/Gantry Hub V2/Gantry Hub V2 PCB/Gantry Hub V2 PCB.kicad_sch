@@ -1,0 +1,24 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "6cb369f5-f711-4187-8635-e032ee1f52a7")
+	(paper "A4")
+	(lib_symbols)
+	(text "https://www.digikey.com/en/products/detail/microchip-technology/MCP23017T-E-SO/964184\n\nhttps://www.digikey.com/en/products/detail/panasonic-industry/AQY282EH/646349"
+		(exclude_from_sim no)
+		(at 233.172 34.798 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "63fe8f5f-c8a0-48a9-a7af-b9b1eee75fd2")
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

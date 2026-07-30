@@ -1,0 +1,8 @@
+Order missing things for encapsulation project
+  -> Redesign Gantry Hub to integrate relays/control
+  -> 8-pin DIN connector for Dispenser: DIN 45326 / IEC/DIN EN 60130-9 types IEC-20 and IEC-21: eight-pin, 45°, 270°
+  ->
+
+MANIFOLD
+  - 22mA/channel
+  - Switching peaks at up to 38V
