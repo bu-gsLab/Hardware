@@ -1,0 +1,23 @@
+version = 1
+revision = 3
+requires-python = ">=3.14"
+
+[[package]]
+name = "gantry-hub-v2"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "kicad-symbol-merge" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "kicad-symbol-merge", specifier = ">=0.2.0" }]
+
+[[package]]
+name = "kicad-symbol-merge"
+version = "0.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/2d/2d/35fa25fdc4687731311ee3a79ae696a55a548dbad4ad7c5964c53239536d/kicad_symbol_merge-0.2.0.tar.gz", hash = "sha256:1a75a98e3622c3335c15efcc1c682199ae0650050976c335e6a34f8548918ba0", size = 3777, upload-time = "2025-10-23T21:02:42.924Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/37/76/a67e16298c50391601f3fcd363fb91e7491bf0d79a993a01a170a509b43b/kicad_symbol_merge-0.2.0-py3-none-any.whl", hash = "sha256:bae07affaffac7eafe01301881d97cc88b80b8559a7149ab5ded2b517b091fb0", size = 4655, upload-time = "2025-10-23T21:02:39.484Z" },
+]

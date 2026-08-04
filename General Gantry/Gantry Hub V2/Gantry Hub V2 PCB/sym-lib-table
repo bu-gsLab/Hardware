@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "Gantry Hub V2") (type "KiCad") (uri "${KIPRJMOD}/lib_symbols/PartsLib.kicad_sym") (options "") (descr ""))
+)

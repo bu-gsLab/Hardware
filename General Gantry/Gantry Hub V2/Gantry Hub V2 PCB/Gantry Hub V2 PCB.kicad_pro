@@ -427,15 +427,24 @@
         "filename": "Gantry Hub V2 PCB.kicad_sch",
         "name": "Root",
         "uuid": "6cb369f5-f711-4187-8635-e032ee1f52a7"
+      },
+      {
+        "filename": "valve_block_interface.kicad_sch",
+        "name": "Valve Block Interface",
+        "uuid": "c906779d-ebcc-4911-9007-96f5b7d22a42"
       }
     ],
-    "used_designators": "#PWR1-2,R1,U1-2",
+    "used_designators": "L1,D1,C1-14,J1-6,#PWR1-33,R1-6,U1-13",
     "variants": []
   },
   "sheets": [
     [
       "6cb369f5-f711-4187-8635-e032ee1f52a7",
       "Root"
+    ],
+    [
+      "c906779d-ebcc-4911-9007-96f5b7d22a42",
+      "Valve Block Interface"
     ]
   ],
   "text_variables": {},

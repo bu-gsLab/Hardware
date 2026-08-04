@@ -1,0 +1,19 @@
+[project]
+name = "gantry-hub-v2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Caleb Fangmeier", email = "caleb@fangmeier.tech" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "kicad-symbol-merge>=0.2.0",
+]
+
+[project.scripts]
+gantry-hub-v2 = "gantry_hub_v2:main"
+
+[build-system]
+requires = ["uv_build>=0.12.0,<0.13.0"]
+build-backend = "uv_build"
