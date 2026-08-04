@@ -2011,8 +2011,8 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at 5.334 5.08 0)
+			(property "Reference" "J5"
+				(at 0.0001 -10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -2022,7 +2022,7 @@
 				)
 			)
 			(property "Value" "DIN-4"
-				(at 0 -6.35 0)
+				(at 0.0001 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -2031,7 +2031,7 @@
 					)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "lib_footprints:CUI_SDF-40J"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2042,7 +2042,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf"
+			(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2054,6 +2054,17 @@
 				)
 			)
 			(property "Description" "4-pin DIN connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Digikey" "CP-7040-ND"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2301,6 +2312,42 @@
 						)
 					)
 				)
+				(pin input line
+					(at 7.62 -3.81 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "S1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -6.35 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "S2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
 			(embedded_fonts no)
 		)
@@ -2313,25 +2360,26 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at 3.175 5.715 0)
+			(property "Reference" "J3"
+				(at -3.1181 -10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify right)
 				)
 			)
 			(property "Value" "DIN-8"
-				(at 2.032 -5.842 0)
+				(at -3.1181 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify right)
 				)
 			)
 			(property "Footprint" ""
@@ -2345,7 +2393,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf"
+			(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2357,6 +2405,17 @@
 				)
 			)
 			(property "Description" "8-pin DIN connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Digikey" "CP-7080-ND"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2761,6 +2820,391 @@
 						)
 					)
 					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -5.08 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "S1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -7.62 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "S2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "DIN-4_1"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J4"
+				(at 0.0001 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "DIN-4"
+				(at 0.0001 -7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "lib_footprints:CUI_SDF-40J"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "4-pin DIN connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Digikey" "CP-7040-ND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "circular DIN connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "DIN*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "DIN-4_1_0_1"
+				(polyline
+					(pts
+						(xy -3.556 -1.016) (xy -5.08 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -3.048 -1.016)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 5.08) (xy -2.54 4.318) (xy -2.286 3.048)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -2.032 2.54)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.762 -4.953) (xy -0.762 -4.191) (xy 0.762 -4.191) (xy 0.762 -4.953)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 5.08 0)
+					(mid 3.8673 -3.3444)
+					(end 0.762 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -5.08 0)
+					(mid 0 5.0579)
+					(end 5.08 0)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.762 -5.08)
+					(mid -3.8597 -3.3379)
+					(end -5.08 0)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 2.54)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 5.08) (xy 2.54 4.318) (xy 2.286 3.048)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 3.048 -1.016)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 0) (xy 3.556 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "DIN-4_1_1_1"
+				(pin passive line
+					(at -7.62 0 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -2.54 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -3.81 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "S1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 7.62 -6.35 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "S2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4578,7 +5022,17 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "DAC Output range is 0V to 4.096V (in high-gain mode)\nAnalog output range should be 0V to 10V\nRequire op-amp gain of 10/4.096=2.44\nNon-inverting topology gain is G= 1 + R_{F} / R_{g}\nChoose R_{F} = 14.3k , R_{g} = 10.0k"
+	(text "Socket in Digikey: 1175-1475-ND"
+		(exclude_from_sim no)
+		(at 64.262 155.448 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "15a0e5ad-9204-4216-956e-71115931f092")
+	)
+	(text "DAC Output range is 0V to 4.096V (in high-gain mode)\nAnalog output range should be 0V to 10V\nRequire op-amp gain of 10/4.096=2.44\nNon-inverting topology gain is G= 1 + R_{F} / R_{g}\nChoose R_{F} = 14.3k , R_{g} = 10.0k\nSocket in Digikey: 1175-1475-ND"
 		(exclude_from_sim no)
 		(at 106.934 184.404 0)
 		(effects
@@ -4600,9 +5054,9 @@
 		)
 		(uuid "41e7265a-11c9-4e52-9399-813a38113659")
 	)
-	(text "Level translator 3.3V->5V\nTie unused inputs low."
+	(text "Level translator 3.3V->5V\nTie unused inputs low.\nSocket in Digikey: 1175-1476-ND"
 		(exclude_from_sim no)
-		(at 169.164 156.464 0)
+		(at 172.974 158.242 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4630,6 +5084,18 @@
 			(justify left)
 		)
 		(uuid "81bb1edc-6acc-4582-8c45-c0c1e96d1d5c")
+	)
+	(junction
+		(at 209.55 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "10cf6660-b363-4aed-b9a3-73c10ba4f9bd")
+	)
+	(junction
+		(at 209.55 81.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "115c35d8-68c2-4059-92c8-ab9eb23d5aa5")
 	)
 	(junction
 		(at 267.97 49.53)
@@ -4666,6 +5132,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "29096a2d-850d-4e5a-9fe4-cf9e27ed06b1")
+	)
+	(junction
+		(at 184.15 81.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2b5722e2-036d-4d08-aee4-1a2aadd99b6d")
 	)
 	(junction
 		(at 261.62 49.53)
@@ -4770,6 +5242,12 @@
 		(uuid "985d7411-fd65-4095-aabb-acc22b17cf84")
 	)
 	(junction
+		(at 241.3 82.55)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "af54f589-99b3-48c6-8573-e75f3538b80f")
+	)
+	(junction
 		(at 69.85 168.91)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4818,6 +5296,12 @@
 		(uuid "e131a331-e12c-4ee6-8f33-8099f826f086")
 	)
 	(junction
+		(at 191.77 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "eb2598b2-7ac2-43c6-9934-9ffbef6cb096")
+	)
+	(junction
 		(at 252.73 95.25)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4828,6 +5312,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f9dfa707-0210-4dfa-8955-655dbceec376")
+	)
+	(junction
+		(at 241.3 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fcc71bb6-282f-43d0-86d3-883035adea70")
 	)
 	(no_connect
 		(at 158.75 49.53)
@@ -4977,6 +5467,16 @@
 	)
 	(wire
 		(pts
+			(xy 186.69 78.74) (xy 184.15 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d45a009-1789-4b03-b9b8-a7fa35009abc")
+	)
+	(wire
+		(pts
 			(xy 148.59 144.78) (xy 151.13 144.78)
 		)
 		(stroke
@@ -5077,6 +5577,16 @@
 	)
 	(wire
 		(pts
+			(xy 184.15 78.74) (xy 184.15 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "23339a0d-253c-46f6-8066-e7935fdf7f8b")
+	)
+	(wire
+		(pts
 			(xy 24.13 147.32) (xy 24.13 158.75)
 		)
 		(stroke
@@ -5127,7 +5637,7 @@
 	)
 	(wire
 		(pts
-			(xy 191.77 95.25) (xy 217.17 95.25)
+			(xy 191.77 95.25) (xy 209.55 95.25)
 		)
 		(stroke
 			(width 0)
@@ -5164,6 +5674,16 @@
 			(type default)
 		)
 		(uuid "3c36e057-ae9a-4c48-acc7-e039e7d832e8")
+	)
+	(wire
+		(pts
+			(xy 184.15 95.25) (xy 191.77 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e5861ae-655d-4c61-9a67-07e892205ff2")
 	)
 	(wire
 		(pts
@@ -5204,6 +5724,16 @@
 			(type default)
 		)
 		(uuid "4407143a-8de0-4bf1-b7af-fa0dc1121d71")
+	)
+	(wire
+		(pts
+			(xy 245.11 80.01) (xy 241.3 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44b5f32b-62c5-4d76-9bf4-47ce08508753")
 	)
 	(wire
 		(pts
@@ -5317,6 +5847,46 @@
 	)
 	(wire
 		(pts
+			(xy 212.09 78.74) (xy 209.55 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "667dd807-58c9-41ec-81b2-5f0233af5caf")
+	)
+	(wire
+		(pts
+			(xy 209.55 95.25) (xy 217.17 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e11a256-df5c-4ef9-86e3-f7a1f3f9c14c")
+	)
+	(wire
+		(pts
+			(xy 241.3 80.01) (xy 241.3 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71b40ce4-f97b-4ae5-a204-1512c55f5e60")
+	)
+	(wire
+		(pts
+			(xy 241.3 95.25) (xy 252.73 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77bde46e-9c20-4b58-aba4-7cf90092c705")
+	)
+	(wire
+		(pts
 			(xy 101.6 146.05) (xy 81.28 146.05)
 		)
 		(stroke
@@ -5414,6 +5984,26 @@
 			(type default)
 		)
 		(uuid "8ff97087-967f-49ac-ae62-a635c72f71d7")
+	)
+	(wire
+		(pts
+			(xy 209.55 81.28) (xy 212.09 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9096680d-dc42-4713-b391-40be9f07033b")
+	)
+	(wire
+		(pts
+			(xy 209.55 78.74) (xy 209.55 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9272a20a-07cd-46eb-955e-6d20bbba1b4a")
 	)
 	(wire
 		(pts
@@ -5727,6 +6317,16 @@
 	)
 	(wire
 		(pts
+			(xy 184.15 81.28) (xy 186.69 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d12d898d-a018-4da8-85ca-66e85ec5025d")
+	)
+	(wire
+		(pts
 			(xy 26.67 107.95) (xy 163.83 107.95)
 		)
 		(stroke
@@ -5757,6 +6357,26 @@
 	)
 	(wire
 		(pts
+			(xy 241.3 82.55) (xy 245.11 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd3c3eb8-4527-4bc9-b6af-e71f3038bbef")
+	)
+	(wire
+		(pts
+			(xy 184.15 81.28) (xy 184.15 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd8da5fe-f524-4cb1-8b43-d3e7d140a6f0")
+	)
+	(wire
+		(pts
 			(xy 120.65 140.97) (xy 120.65 149.86)
 		)
 		(stroke
@@ -5777,7 +6397,7 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 95.25) (xy 252.73 95.25)
+			(xy 217.17 95.25) (xy 241.3 95.25)
 		)
 		(stroke
 			(width 0)
@@ -5847,6 +6467,16 @@
 	)
 	(wire
 		(pts
+			(xy 209.55 81.28) (xy 209.55 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9cf1658-61c8-475e-a985-4292d9564b6e")
+	)
+	(wire
+		(pts
 			(xy 88.9 143.51) (xy 88.9 149.86)
 		)
 		(stroke
@@ -5874,6 +6504,16 @@
 			(type default)
 		)
 		(uuid "fc4a3374-a394-47cc-90dc-5fe4c67adab1")
+	)
+	(wire
+		(pts
+			(xy 241.3 82.55) (xy 241.3 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fcab0d9b-3ab1-4d97-8a79-9c8bb14740c6")
 	)
 	(image
 		(at 214.63 109.22)
@@ -7448,7 +8088,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 116.84 177.038 90)
 			(hide yes)
 			(show_name no)
@@ -7608,7 +8248,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
 			(at 214.9348 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -7619,7 +8259,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.rubycon.co.jp/wp-content/uploads/catalog-aluminum/ZLJ.pdf"
 			(at 215.9 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -7631,6 +8271,17 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
+			(at 215.9 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "1189-2330-ND"
 			(at 215.9 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -7961,7 +8612,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket_LongPads"
 			(at 113.03 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -7972,7 +8623,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm2904-n.pdf"
+		(property "Datasheet" "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Flm358"
 			(at 113.03 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -7984,6 +8635,17 @@
 			)
 		)
 		(property "Description" "Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8"
+			(at 113.03 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "296-1395-5-ND"
 			(at 113.03 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -8061,7 +8723,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket_LongPads"
 			(at 88.9 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -8072,7 +8734,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf"
+		(property "Datasheet" "https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20002249B.pdf"
 			(at 88.9 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -8084,6 +8746,17 @@
 			)
 		)
 		(property "Description" "2-Channel 8-Bit D/A Converters with SPI Interface and Internal Reference (2.048V)"
+			(at 68.58 140.97 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "MCP4802-E/P-ND"
 			(at 68.58 140.97 0)
 			(hide yes)
 			(show_name no)
@@ -8237,7 +8910,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket_LongPads"
 			(at 113.03 140.97 0)
 			(hide yes)
 			(show_name no)
@@ -8248,7 +8921,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm2904-n.pdf"
+		(property "Datasheet" "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Flm358"
 			(at 113.03 140.97 0)
 			(hide yes)
 			(show_name no)
@@ -8260,6 +8933,17 @@
 			)
 		)
 		(property "Description" "Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8"
+			(at 113.03 140.97 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "296-1395-5-ND"
 			(at 113.03 140.97 0)
 			(hide yes)
 			(show_name no)
@@ -8334,7 +9018,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "lib_footprints:IND_PE-526xx_V_PUL"
 			(at 256.54 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -8345,7 +9029,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://productfinder.pulseelectronics.com/api/open/part-attachments/datasheet/PE-52647NL"
 			(at 256.54 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -8358,6 +9042,17 @@
 		)
 		(property "Description" "Inductor"
 			(at 256.54 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "553-1558-5-ND"
+			(at 256.54 49.53 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8570,7 +9265,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 116.84 151.638 90)
 			(hide yes)
 			(show_name no)
@@ -8730,7 +9425,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 87.122 181.61 90)
 			(hide yes)
 			(show_name no)
@@ -8810,7 +9505,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "lib_footprints:CUI_SDF-40J"
 			(at 194.31 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -8821,7 +9516,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf"
+		(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
 			(at 194.31 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -8843,6 +9538,17 @@
 				)
 			)
 		)
+		(property "Digikey" "CP-7040-ND"
+			(at 194.31 85.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "4"
 			(uuid "8000336e-5aa5-4eaa-9eb3-b9bad60fa50a")
 		)
@@ -8854,6 +9560,12 @@
 		)
 		(pin "1"
 			(uuid "2b597f75-f680-483d-8d09-e17bb4c706f4")
+		)
+		(pin "S1"
+			(uuid "dd4ad449-4d54-4a9a-a25f-838bc140ff85")
+		)
+		(pin "S2"
+			(uuid "03e4cf0b-c0ef-4239-9788-8dc81b6b756d")
 		)
 		(instances
 			(project "Gantry Hub V2 PCB"
@@ -8896,7 +9608,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket_LongPads"
 			(at 66.04 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -8907,7 +9619,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm2904-n.pdf"
+		(property "Datasheet" "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Flm358"
 			(at 66.04 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -8919,6 +9631,17 @@
 			)
 		)
 		(property "Description" "Low-Power, Dual Operational Amplifiers, DIP-8/SOIC-8/TO-99-8"
+			(at 66.04 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "296-1395-5-ND"
 			(at 66.04 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -8997,7 +9720,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 61.9252 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -9157,7 +9880,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal"
 			(at 261.62 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -9168,7 +9891,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.smc-diodes.com/propdf/11DQ05(06)%20N0653%20REV.A.pdf"
 			(at 261.62 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -9181,6 +9904,17 @@
 		)
 		(property "Description" "Schottky diode"
 			(at 261.62 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "1655-11DQ06CT-ND"
+			(at 261.62 53.34 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9395,7 +10129,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
 			(at 268.9352 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -9406,7 +10140,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.rubycon.co.jp/wp-content/uploads/catalog-aluminum/ZLJ.pdf"
 			(at 267.97 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -9418,6 +10152,17 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
+			(at 267.97 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "1189-1251-ND"
 			(at 267.97 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -9475,7 +10220,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib_footprints:CONN_4840-6004-CP_3MM"
+		(property "Footprint" "lib_footprints:SC0915"
 			(at 31.75 26.67 0)
 			(hide yes)
 			(show_name no)
@@ -9869,7 +10614,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 32.0548 152.4 0)
 			(hide yes)
 			(show_name no)
@@ -9918,6 +10663,7 @@
 		)
 	)
 	(symbol
+		(lib_name "DIN-4_1")
 		(lib_id "Connector:DIN-4")
 		(at 219.71 85.09 180)
 		(unit 1)
@@ -9949,7 +10695,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "lib_footprints:CUI_SDF-40J"
 			(at 219.71 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -9960,7 +10706,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf"
+		(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
 			(at 219.71 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -9982,6 +10728,17 @@
 				)
 			)
 		)
+		(property "Digikey" "CP-7040-ND"
+			(at 219.71 85.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "4"
 			(uuid "d4f90d37-ad9e-407b-8a95-06dc284fab3b")
 		)
@@ -9993,6 +10750,12 @@
 		)
 		(pin "1"
 			(uuid "12fa821a-2bd9-4adc-935a-cd8f6fe9f56c")
+		)
+		(pin "S1"
+			(uuid "c8c230e2-654c-4f6f-8354-35ec9d98d40b")
+		)
+		(pin "S2"
+			(uuid "898e4f8d-0f16-48a5-a6f5-60c155b55f53")
 		)
 		(instances
 			(project "Gantry Hub V2 PCB"
@@ -10181,7 +10944,7 @@
 				)
 			)
 		)
-		(property "Value" "LM2575-5.0BT"
+		(property "Value" "LM2575-5.0WT"
 			(at 236.22 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10216,6 +10979,17 @@
 			)
 		)
 		(property "Description" "Fixed 5.0V 52kHz Simple 1A Buck Regulator, TO-220-5"
+			(at 236.22 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "576-1516-5-ND"
 			(at 236.22 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -10284,7 +11058,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "lib_footprints:CONN_SDA_43255-00xx_02_MOL"
 			(at 255.27 21.59 0)
 			(hide yes)
 			(show_name no)
@@ -10295,7 +11069,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.molex.com/en-us/products/part-detail/432550003?display=pdf"
 			(at 255.27 21.59 0)
 			(hide yes)
 			(show_name no)
@@ -10307,6 +11081,17 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 255.27 21.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "WM23264-ND"
 			(at 255.27 21.59 0)
 			(hide yes)
 			(show_name no)
@@ -10367,7 +11152,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 23.1648 147.32 0)
 			(hide yes)
 			(show_name no)
@@ -10606,7 +11391,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 70.8152 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -10688,7 +11473,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "lib_footprints:CUI_SDF-80J"
 			(at 252.73 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -10699,7 +11484,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf"
+		(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
 			(at 252.73 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -10711,6 +11496,17 @@
 			)
 		)
 		(property "Description" "8-pin DIN connector"
+			(at 252.73 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "CP-7080-ND"
 			(at 252.73 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -10744,6 +11540,12 @@
 		)
 		(pin "8"
 			(uuid "1f093d6a-74eb-4456-8fc4-3782d0c95804")
+		)
+		(pin "S2"
+			(uuid "64ea92ed-e133-4a5f-920a-1739a43d2859")
+		)
+		(pin "S1"
+			(uuid "27b32837-3690-4c7d-b3d8-f96c82b56e19")
 		)
 		(instances
 			(project "Gantry Hub V2 PCB"
@@ -10788,7 +11590,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 96.012 181.61 90)
 			(hide yes)
 			(show_name no)
