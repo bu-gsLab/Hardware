@@ -1,0 +1,133 @@
+(footprint "CUI PJ-037A"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 10 -4 90)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "0200d7b6-a142-469a-b96a-54bd2c20241c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "CUI PJ-037A"
+		(at -2.5 -3.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "1e82da64-5448-491d-994f-08508c0c334d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0a4d5320-92bc-4a00-b731-695ca77f8299")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bb424a66-afed-4b61-a334-1c26a98cd851")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4b96bb62-e862-4631-8513-202777a08027")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -4 -4.5)
+		(end 8 4.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "acfda78c-d01c-49be-9a37-f6d26d3a1031")
+	)
+	(fp_rect
+		(start -7.5 -4.5)
+		(end 8 4.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "acf122f8-f39f-466f-b9fb-50746047aeef")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -2 3.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "56ba1ea2-5e53-417d-9194-4c303cfda8f0")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole oval
+		(at 6.3 0)
+		(size 2.1 4.2)
+		(drill oval 1.1 3.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers yes)
+		(keep_end_layers yes)
+		(uuid "69010c57-3fec-4082-a41d-54a1da9edf1a")
+	)
+	(pad "2" thru_hole oval
+		(at 0 0)
+		(size 2.1 4.2)
+		(drill oval 1.1 3.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers yes)
+		(keep_end_layers yes)
+		(uuid "f110720b-95f1-4708-a4c8-3674a527b43d")
+	)
+	(model "${KIPRJMOD}/CUI_DEVICES_PJ-037A.step"
+		(offset
+			(xyz -7.5 0 6.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 90)
+		)
+	)
+)
