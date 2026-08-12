@@ -4,6 +4,11 @@
 	(generator_version "10.0")
 	(uuid "6cb369f5-f711-4187-8635-e032ee1f52a7")
 	(paper "A4")
+	(title_block
+		(title "Gantry Hub PCB")
+		(date "2026-08-11")
+		(rev "2.0")
+	)
 	(lib_symbols
 		(symbol "2026-07-30_18-39-20:SC0915"
 			(pin_names
@@ -2198,355 +2203,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector:DIN-4"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J5"
-				(at 0.0001 -10.16 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "DIN-4"
-				(at 0.0001 -7.62 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "lib_footprints:CUI_SDF-40J"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "4-pin DIN connector"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Digikey" "CP-7040-ND"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "circular DIN connector"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "DIN*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "DIN-4_0_1"
-				(polyline
-					(pts
-						(xy -3.556 -1.016) (xy -5.08 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -3.048 -1.016)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 5.08) (xy -2.54 4.318) (xy -2.286 3.048)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -2.032 2.54)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 -4.953) (xy -0.762 -4.191) (xy 0.762 -4.191) (xy 0.762 -4.953)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 5.08 0)
-					(mid 3.8673 -3.3444)
-					(end 0.762 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -5.08 0)
-					(mid 0 5.0579)
-					(end 5.08 0)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -0.762 -5.08)
-					(mid -3.8597 -3.3379)
-					(end -5.08 0)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 2.54)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 5.08) (xy 2.54 4.318) (xy 2.286 3.048)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 3.048 -1.016)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 0) (xy 3.556 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "DIN-4_1_1"
-				(pin passive line
-					(at -7.62 0 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -2.54 7.62 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 7.62 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 0 180)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 7.62 -3.81 180)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "S1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 7.62 -6.35 180)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "S2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Connector:DIN-8"
 			(pin_names
 				(offset 1.016)
@@ -3062,7 +2718,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "DIN-4_1"
+		(symbol "Connector:Mini-DIN-4"
 			(pin_names
 				(offset 1.016)
 			)
@@ -3071,8 +2727,8 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J4"
-				(at 0.0001 -10.16 0)
+			(property "Reference" "J9"
+				(at 0.0177 10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -3081,8 +2737,8 @@
 					)
 				)
 			)
-			(property "Value" "DIN-4"
-				(at 0.0001 -7.62 0)
+			(property "Value" "Mini-DIN-4"
+				(at 0.0177 7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -3091,7 +2747,7 @@
 					)
 				)
 			)
-			(property "Footprint" "lib_footprints:CUI_SDF-40J"
+			(property "Footprint" ""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3102,7 +2758,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
+			(property "Datasheet" "http://service.powerdynamics.com/ec/Catalog17/Section%2011.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3113,7 +2769,7 @@
 					)
 				)
 			)
-			(property "Description" "4-pin DIN connector"
+			(property "Description" "4-pin Mini-DIN connector"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3124,7 +2780,7 @@
 					)
 				)
 			)
-			(property "Digikey" "CP-7040-ND"
+			(property "ki_keywords" "Mini-DIN"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3135,7 +2791,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "circular DIN connector"
+			(property "ki_fp_filters" "MINI?DIN*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3146,21 +2802,22 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "DIN*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "DIN-4_1_0_1"
+			(symbol "Mini-DIN-4_0_1"
 				(polyline
 					(pts
-						(xy -3.556 -1.016) (xy -5.08 0)
+						(xy -4.318 -2.54) (xy -3.048 -2.54) (xy -3.048 -4.064)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 0) (xy -5.08 0)
 					)
 					(stroke
 						(width 0)
@@ -3171,7 +2828,7 @@
 					)
 				)
 				(circle
-					(center -3.048 -1.016)
+					(center -3.302 0)
 					(radius 0.508)
 					(stroke
 						(width 0)
@@ -3183,7 +2840,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.54 5.08) (xy -2.54 4.318) (xy -2.286 3.048)
+						(xy -2.54 2.54) (xy -5.08 2.54)
 					)
 					(stroke
 						(width 0)
@@ -3206,7 +2863,7 @@
 				)
 				(polyline
 					(pts
-						(xy -0.762 -4.953) (xy -0.762 -4.191) (xy 0.762 -4.191) (xy 0.762 -4.953)
+						(xy -1.016 5.08) (xy -1.016 4.064) (xy 1.016 4.064) (xy 1.016 5.08)
 					)
 					(stroke
 						(width 0.254)
@@ -3216,10 +2873,21 @@
 						(type none)
 					)
 				)
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 -3.556)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(arc
-					(start 5.08 0)
-					(mid 3.8673 -3.3444)
-					(end 0.762 -5.08)
+					(start 3.048 -4.064)
+					(mid 0 -5.08)
+					(end -3.048 -4.064)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -3229,9 +2897,9 @@
 					)
 				)
 				(arc
-					(start -5.08 0)
-					(mid 0 5.0579)
-					(end 5.08 0)
+					(start 1.016 5.08)
+					(mid 4.6646 2.1356)
+					(end 4.318 -2.54)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -3241,9 +2909,9 @@
 					)
 				)
 				(arc
-					(start -0.762 -5.08)
-					(mid -3.8597 -3.3379)
-					(end -5.08 0)
+					(start -4.318 -2.54)
+					(mid -4.6241 2.1181)
+					(end -1.016 5.08)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -3253,7 +2921,7 @@
 					)
 				)
 				(circle
-					(center 2.032 2.54)
+					(center 2.286 2.54)
 					(radius 0.508)
 					(stroke
 						(width 0)
@@ -3265,7 +2933,7 @@
 				)
 				(polyline
 					(pts
-						(xy 2.54 5.08) (xy 2.54 4.318) (xy 2.286 3.048)
+						(xy 2.794 2.54) (xy 5.08 2.54)
 					)
 					(stroke
 						(width 0)
@@ -3276,7 +2944,7 @@
 					)
 				)
 				(circle
-					(center 3.048 -1.016)
+					(center 3.302 0)
 					(radius 0.508)
 					(stroke
 						(width 0)
@@ -3288,7 +2956,19 @@
 				)
 				(polyline
 					(pts
-						(xy 5.08 0) (xy 3.556 -1.016)
+						(xy 4.318 -2.54) (xy 3.048 -2.54) (xy 3.048 -4.064)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 0) (xy 3.81 0)
 					)
 					(stroke
 						(width 0)
@@ -3299,9 +2979,9 @@
 					)
 				)
 			)
-			(symbol "DIN-4_1_1_1"
+			(symbol "Mini-DIN-4_1_1"
 				(pin passive line
-					(at -7.62 0 0)
+					(at 7.62 0 180)
 					(length 2.54)
 					(name ""
 						(effects
@@ -3319,7 +2999,7 @@
 					)
 				)
 				(pin passive line
-					(at -2.54 7.62 270)
+					(at -7.62 0 0)
 					(length 2.54)
 					(name ""
 						(effects
@@ -3337,7 +3017,7 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 7.62 270)
+					(at 7.62 2.54 180)
 					(length 2.54)
 					(name ""
 						(effects
@@ -3355,7 +3035,7 @@
 					)
 				)
 				(pin passive line
-					(at 7.62 0 180)
+					(at -7.62 2.54 0)
 					(length 2.54)
 					(name ""
 						(effects
@@ -3373,7 +3053,7 @@
 					)
 				)
 				(pin input line
-					(at 7.62 -3.81 180)
+					(at 0 -7.62 90)
 					(length 2.54)
 					(name ""
 						(effects
@@ -3382,25 +3062,7 @@
 							)
 						)
 					)
-					(number "S1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 7.62 -6.35 180)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "S2"
+					(number "SHIELD"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -5241,7 +4903,7 @@
 	)
 	(text "Microscope Light Plug \n  & Spare"
 		(exclude_from_sim no)
-		(at 197.358 73.66 0)
+		(at 198.628 67.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5260,7 +4922,7 @@
 		)
 		(uuid "43b8daf3-1110-4aae-a80f-af8dd6cb25dc")
 	)
-	(text "Mount to PCB w/\n2x 20-pin female headers, digikey 732-61302011821-ND\n2x soldered 20-pin male headers, digikey SAM10260-ND"
+	(text "Mount to PCB w/\n2x 20-pin female headers, digikey 732-61302011821-ND\n2x soldered 20-pin male headers, digikey 612-TS-120-T-A-ND"
 		(exclude_from_sim no)
 		(at 92.964 101.854 0)
 		(effects
@@ -5291,17 +4953,26 @@
 		)
 		(uuid "81bb1edc-6acc-4582-8c45-c0c1e96d1d5c")
 	)
-	(junction
-		(at 209.55 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "10cf6660-b363-4aed-b9a3-73c10ba4f9bd")
+	(text "Schottky diode to avoid USB \nback-feeding power to system"
+		(exclude_from_sim no)
+		(at 176.784 50.038 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "8f891091-d291-46c0-bebf-30888c2cf0c5")
 	)
-	(junction
-		(at 209.55 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "115c35d8-68c2-4059-92c8-ab9eb23d5aa5")
+	(text "Digikey parts list:\n\nhttps://www.digikey.com/en/mylists/list/8ZQ23FV3C8"
+		(exclude_from_sim no)
+		(at 201.422 153.416 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a12fad47-a89b-491d-b4c7-4f0b3a09b4b4")
 	)
 	(junction
 		(at 267.97 31.75)
@@ -5346,12 +5017,6 @@
 		(uuid "29096a2d-850d-4e5a-9fe4-cf9e27ed06b1")
 	)
 	(junction
-		(at 184.15 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2b5722e2-036d-4d08-aee4-1a2aadd99b6d")
-	)
-	(junction
 		(at 261.62 31.75)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5374,6 +5039,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2f820dca-91c9-4fca-9897-7f990740395b")
+	)
+	(junction
+		(at 218.44 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3335daaa-ac4f-43d7-a3cd-8bb1f5162a06")
 	)
 	(junction
 		(at 97.79 175.26)
@@ -5424,12 +5095,6 @@
 		(uuid "767b010f-b991-4e2c-9f98-1544f5b6b083")
 	)
 	(junction
-		(at 217.17 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7bbe4e2b-c66b-4b3e-86a8-5427977175e6")
-	)
-	(junction
 		(at 227.33 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5440,6 +5105,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7df547b0-ccad-4067-9dd2-7413348a0ce1")
+	)
+	(junction
+		(at 227.33 73.66)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7e200ff6-3da4-435b-8485-a3d1d1d335b3")
 	)
 	(junction
 		(at 60.96 181.61)
@@ -5520,16 +5191,22 @@
 		(uuid "d1db5455-a3ad-49f9-b1e9-d9150fcb6b76")
 	)
 	(junction
+		(at 227.33 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d68a2acb-4292-4506-894e-864859c811f4")
+	)
+	(junction
 		(at 88.9 185.42)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e131a331-e12c-4ee6-8f33-8099f826f086")
 	)
 	(junction
-		(at 191.77 95.25)
+		(at 203.2 95.25)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "eb2598b2-7ac2-43c6-9934-9ffbef6cb096")
+		(uuid "e6befc7e-cc84-4dad-a710-d0d219108b27")
 	)
 	(junction
 		(at 252.73 95.25)
@@ -5548,6 +5225,10 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fcc71bb6-282f-43d0-86d3-883035adea70")
+	)
+	(no_connect
+		(at 186.69 85.09)
+		(uuid "01dd15b7-480f-43b8-abf7-ea108948c946")
 	)
 	(no_connect
 		(at 158.75 49.53)
@@ -5584,10 +5265,6 @@
 	(no_connect
 		(at 158.75 57.15)
 		(uuid "4fa34d40-1672-4e6c-aa21-1cabfc58b999")
-	)
-	(no_connect
-		(at 186.69 85.09)
-		(uuid "5767ad57-0e6f-480d-94fa-064b50bc1c1e")
 	)
 	(no_connect
 		(at 158.75 52.07)
@@ -5630,8 +5307,8 @@
 		(uuid "be1a8c82-de82-4fed-ba95-395dc5d976a4")
 	)
 	(no_connect
-		(at 212.09 85.09)
-		(uuid "c1d08269-59b4-4adb-9017-b5ee106c5cb2")
+		(at 210.82 85.09)
+		(uuid "e56834f1-f521-4186-b37e-3d66eb29eafc")
 	)
 	(no_connect
 		(at 158.75 29.21)
@@ -5687,6 +5364,16 @@
 	)
 	(wire
 		(pts
+			(xy 201.93 85.09) (xy 203.2 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "09845fdd-d946-4252-93fc-1e94e72ad2ec")
+	)
+	(wire
+		(pts
 			(xy 120.65 140.97) (xy 124.46 140.97)
 		)
 		(stroke
@@ -5697,13 +5384,13 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 78.74) (xy 184.15 78.74)
+			(xy 226.06 85.09) (xy 227.33 85.09)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0d45a009-1789-4b03-b9b8-a7fa35009abc")
+		(uuid "0f0edf05-4535-49a5-b74d-80d4ac28e537")
 	)
 	(wire
 		(pts
@@ -5757,6 +5444,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 62.23) (xy 165.1 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1454373c-0a74-4661-864c-85b624a78111")
+	)
+	(wire
+		(pts
 			(xy 101.6 163.83) (xy 101.6 146.05)
 		)
 		(stroke
@@ -5787,16 +5484,6 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 92.71) (xy 217.17 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1c1150e4-685d-4194-b0fa-8e8095bc4e68")
-	)
-	(wire
-		(pts
 			(xy 26.67 31.75) (xy 26.67 44.45)
 		)
 		(stroke
@@ -5817,17 +5504,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 78.74) (xy 184.15 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "23339a0d-253c-46f6-8066-e7935fdf7f8b")
-	)
-	(wire
-		(pts
-			(xy 227.33 55.88) (xy 227.33 85.09)
+			(xy 227.33 55.88) (xy 227.33 73.66)
 		)
 		(stroke
 			(width 0)
@@ -5887,6 +5564,16 @@
 	)
 	(wire
 		(pts
+			(xy 203.2 95.25) (xy 218.44 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27e61ea3-5456-4792-bb90-fa7ea817f708")
+	)
+	(wire
+		(pts
 			(xy 172.72 26.67) (xy 176.53 26.67)
 		)
 		(stroke
@@ -5897,13 +5584,13 @@
 	)
 	(wire
 		(pts
-			(xy 191.77 95.25) (xy 209.55 95.25)
+			(xy 194.31 95.25) (xy 203.2 95.25)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "2b666f60-e71c-4a87-9fcf-21f9626da2ed")
+		(uuid "29791ab2-4af2-4c67-92ea-66d718ee0017")
 	)
 	(wire
 		(pts
@@ -5914,6 +5601,16 @@
 			(type default)
 		)
 		(uuid "2d42b013-9b2a-4d2d-88db-a24ecc58cfeb")
+	)
+	(wire
+		(pts
+			(xy 205.74 87.63) (xy 205.74 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "32b21878-6303-4a92-a80c-95c0ef5dc9ed")
 	)
 	(wire
 		(pts
@@ -5937,16 +5634,6 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 95.25) (xy 191.77 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3e5861ae-655d-4c61-9a67-07e892205ff2")
-	)
-	(wire
-		(pts
 			(xy 88.9 149.86) (xy 88.9 177.8)
 		)
 		(stroke
@@ -5964,16 +5651,6 @@
 			(type default)
 		)
 		(uuid "3ea6d77f-496b-4929-be23-35c095ad0452")
-	)
-	(wire
-		(pts
-			(xy 191.77 95.25) (xy 191.77 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "40daa02b-d937-4477-911d-dd4899ec54c1")
 	)
 	(wire
 		(pts
@@ -6067,16 +5744,6 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 62.23) (xy 163.83 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "554e5f67-09ce-45e1-92bb-dd1ff5a38e4c")
-	)
-	(wire
-		(pts
 			(xy 44.45 158.75) (xy 68.58 158.75)
 		)
 		(stroke
@@ -6084,6 +5751,16 @@
 			(type default)
 		)
 		(uuid "55ab9e3d-8639-4cee-afa9-8b7335342b0f")
+	)
+	(wire
+		(pts
+			(xy 201.93 87.63) (xy 205.74 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5612c2e8-606d-4164-9fb0-5cfdd9aa2b7a")
 	)
 	(wire
 		(pts
@@ -6117,6 +5794,26 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 73.66) (xy 227.33 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c5d46d3-321e-4a21-bac2-55eb392ec101")
+	)
+	(wire
+		(pts
+			(xy 172.72 62.23) (xy 182.88 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5cc4b3a1-b000-497b-ba45-8c23555cd7d9")
+	)
+	(wire
+		(pts
 			(xy 33.02 158.75) (xy 44.45 158.75)
 		)
 		(stroke
@@ -6124,26 +5821,6 @@
 			(type default)
 		)
 		(uuid "60b7e938-8133-4591-b6dc-de3014973987")
-	)
-	(wire
-		(pts
-			(xy 212.09 78.74) (xy 209.55 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "667dd807-58c9-41ec-81b2-5f0233af5caf")
-	)
-	(wire
-		(pts
-			(xy 209.55 95.25) (xy 217.17 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6e11a256-df5c-4ef9-86e3-f7a1f3f9c14c")
 	)
 	(wire
 		(pts
@@ -6257,13 +5934,23 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 59.69) (xy 163.83 62.23)
+			(xy 182.88 58.42) (xy 182.88 62.23)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "888d9e6b-66c0-47cf-8ce5-2db34e61a3f3")
+	)
+	(wire
+		(pts
+			(xy 218.44 95.25) (xy 227.33 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8bef7740-8d56-40e9-a5d2-1b8c30b3886a")
 	)
 	(wire
 		(pts
@@ -6274,26 +5961,6 @@
 			(type default)
 		)
 		(uuid "8ff97087-967f-49ac-ae62-a635c72f71d7")
-	)
-	(wire
-		(pts
-			(xy 209.55 81.28) (xy 212.09 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9096680d-dc42-4713-b391-40be9f07033b")
-	)
-	(wire
-		(pts
-			(xy 209.55 78.74) (xy 209.55 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9272a20a-07cd-46eb-955e-6d20bbba1b4a")
 	)
 	(wire
 		(pts
@@ -6427,6 +6094,16 @@
 	)
 	(wire
 		(pts
+			(xy 203.2 85.09) (xy 203.2 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9ae0311-d4b6-4d72-99b4-ea8492c25865")
+	)
+	(wire
+		(pts
 			(xy 69.85 168.91) (xy 69.85 173.99)
 		)
 		(stroke
@@ -6434,6 +6111,16 @@
 			(type default)
 		)
 		(uuid "aa1037fa-006e-4e8e-8921-e9db0e42a827")
+	)
+	(wire
+		(pts
+			(xy 228.6 73.66) (xy 227.33 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ab6359e6-7322-47d7-bd6f-1cda90b5d757")
 	)
 	(wire
 		(pts
@@ -6454,6 +6141,16 @@
 			(type default)
 		)
 		(uuid "b0b5d7a4-dc95-4abd-a14e-25931dadfa78")
+	)
+	(wire
+		(pts
+			(xy 227.33 85.09) (xy 227.33 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3cbd091-baf2-442a-a713-9eaa02999f6c")
 	)
 	(wire
 		(pts
@@ -6597,13 +6294,33 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 82.55) (xy 201.93 85.09)
+			(xy 228.6 73.66) (xy 228.6 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c69c18d8-de40-44da-badf-8d5b093a4547")
+		(uuid "c8df599b-2724-465b-a446-90c74ebb8dbe")
+	)
+	(wire
+		(pts
+			(xy 228.6 87.63) (xy 226.06 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca481651-fb9a-438d-87a1-cfdea17e509d")
+	)
+	(wire
+		(pts
+			(xy 227.33 95.25) (xy 241.3 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc1c4e39-230f-4b81-873d-b790b6de8535")
 	)
 	(wire
 		(pts
@@ -6624,16 +6341,6 @@
 			(type default)
 		)
 		(uuid "ccede811-6e0f-44f2-a409-d117e5c17a75")
-	)
-	(wire
-		(pts
-			(xy 184.15 81.28) (xy 186.69 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d12d898d-a018-4da8-85ca-66e85ec5025d")
 	)
 	(wire
 		(pts
@@ -6677,16 +6384,6 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 81.28) (xy 184.15 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dd8da5fe-f524-4cb1-8b43-d3e7d140a6f0")
-	)
-	(wire
-		(pts
 			(xy 120.65 140.97) (xy 120.65 149.86)
 		)
 		(stroke
@@ -6704,16 +6401,6 @@
 			(type default)
 		)
 		(uuid "e2b254d0-18a6-45de-b4cb-64462e707750")
-	)
-	(wire
-		(pts
-			(xy 217.17 95.25) (xy 241.3 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e348c761-83e3-4090-85b3-43f2c8d0d473")
 	)
 	(wire
 		(pts
@@ -6784,16 +6471,6 @@
 			(type default)
 		)
 		(uuid "f772d061-bfc4-4b29-a125-161add777556")
-	)
-	(wire
-		(pts
-			(xy 209.55 81.28) (xy 209.55 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f9cf1658-61c8-475e-a985-4292d9564b6e")
 	)
 	(wire
 		(pts
@@ -8276,15 +7953,65 @@
 			"AIIn6QAAgifpAACCJ+kAAIIn6QAAgifpAACCJ+kAABJC9ztH2Wpq51pBzgAAAABJRU5ErkJggg=="
 		)
 	)
-	(label "ANALOG_OUT_2"
-		(at 196.85 92.71 0)
+	(label "DAC_{SCK}"
+		(at 31.75 59.69 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "03dfddd7-e33a-4c9c-80ca-d4594afe86fc")
+	)
+	(label "DAC_{SDI}"
+		(at 31.75 62.23 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "113f898a-3023-47fe-afbe-9df83963d2d1")
+	)
+	(label "ANALOG_OUT_1"
+		(at 186.69 87.63 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "1c267343-94ee-4aa1-b337-193205609653")
+	)
+	(label "D3"
+		(at 185.42 134.62 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "1c267343-94ee-4aa1-b337-193205609653")
+		(uuid "2929ac03-e900-4cb2-818d-0e1aba6e2ba9")
+	)
+	(label "D1"
+		(at 151.13 139.7 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "355a8679-7155-4db2-96f2-f36255f4d641")
+	)
+	(label "DAC_~{CS}"
+		(at 31.75 54.61 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "39b84bfe-83f1-4b25-b3f0-e81a627bd08e")
 	)
 	(label "DAC_~{CS}"
 		(at 55.88 146.05 180)
@@ -8306,7 +8033,7 @@
 		)
 		(uuid "451ff1d2-a150-46e2-a264-94bf22b95eb0")
 	)
-	(label "SPI_SCK"
+	(label "DAC_{SCK}"
 		(at 55.88 138.43 180)
 		(effects
 			(font
@@ -8316,13 +8043,33 @@
 		)
 		(uuid "518480ff-7b2a-4f39-a772-f6a4f1574d94")
 	)
-	(label "ANALOG_OUT_1"
-		(at 222.25 92.71 0)
+	(label "D0"
+		(at 31.75 41.91 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8998fffb-40f5-4750-aaf7-e1e580a6b793")
+	)
+	(label "D2"
+		(at 185.42 142.24 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
+		)
+		(uuid "8f6ed97a-de42-4db2-b307-9b666e9aa254")
+	)
+	(label "ANALOG_OUT_2"
+		(at 210.82 87.63 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
 		)
 		(uuid "9519a1b9-bb38-453c-bc6c-9c343eb07d3b")
 	)
@@ -8336,7 +8083,7 @@
 		)
 		(uuid "9cf295b9-cda7-4cfb-8fae-9352f494dab6")
 	)
-	(label "DISPENSE_ENABLE"
+	(label "D0"
 		(at 151.13 132.08 180)
 		(effects
 			(font
@@ -8346,7 +8093,7 @@
 		)
 		(uuid "b8fe6378-1ecf-47e7-8ed4-f12a915d1161")
 	)
-	(label "SPI_SDI"
+	(label "DAC_{SDI}"
 		(at 55.88 143.51 180)
 		(effects
 			(font
@@ -8355,6 +8102,16 @@
 			(justify right bottom)
 		)
 		(uuid "c3c50115-df45-42c0-ac25-03e2adf49698")
+	)
+	(label "D1"
+		(at 31.75 52.07 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ea4a21ac-10dd-4f8a-bb72-71f6f679eee5")
 	)
 	(label "DISPENSE_ENABLE_OUT"
 		(at 260.35 87.63 0)
@@ -8375,6 +8132,146 @@
 			(justify left bottom)
 		)
 		(uuid "f2157d17-c4ea-481f-9a2d-99ada701c103")
+	)
+	(label "D3"
+		(at 31.75 46.99 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "f3d08bfa-ad24-4c70-9cec-fd9d5ad3ce8f")
+	)
+	(label "D2"
+		(at 31.75 49.53 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ff18ca37-18c8-458f-8036-1941c5aa1871")
+	)
+	(global_label "MNFLD-~{SRCLR}"
+		(shape input)
+		(at 31.75 26.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "07053ffb-2aae-495e-8be5-91a39e7b76b8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 14.9762 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "MNFLD-R_{CK}"
+		(shape input)
+		(at 31.75 39.37 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1964d23a-2932-4e26-8a28-19ddbed95400")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 17.671 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "MNFLD-S_{IN}"
+		(shape input)
+		(at 31.75 36.83 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "46a12963-9897-4b65-81ac-8711b93ebec3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 18.2153 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "MNFLD-S_{CK}"
+		(shape input)
+		(at 31.75 34.29 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "527f2479-658f-4eb3-93cc-6e5c2ca97ccd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 17.7315 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "MNFLD-DISABLE"
+		(shape input)
+		(at 31.75 29.21 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5f2de0da-03e2-4b30-82cd-fbc3397dd77a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 13.4038 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -8432,6 +8329,17 @@
 		)
 		(property "Description" "Resistor"
 			(at 116.84 175.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "13-AC1206FR-0714K3LCT-ND"
+			(at 116.84 175.26 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8693,6 +8601,17 @@
 				)
 			)
 		)
+		(property "Digikey" "296-4655-5-ND"
+			(at 151.13 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "5"
 			(uuid "5a8e1177-10a4-4d9d-aa35-f6c778d33f85")
 		)
@@ -8739,6 +8658,97 @@
 			(project "Gantry Hub V2 PCB"
 				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
 					(reference "U7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 168.91 62.23 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "10c40370-800c-4319-829d-6aed6c46aedf")
+		(property "Reference" "D2"
+			(at 168.5925 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "11DQ06"
+			(at 168.5925 58.42 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_THT:D_A-405_P7.62mm_Horizontal"
+			(at 168.91 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 168.91 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Schottky diode"
+			(at 168.91 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "1655-11DQ06CT-ND"
+			(at 168.91 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "917b2954-8250-422e-9d30-4d2a69d203ce")
+		)
+		(pin "1"
+			(uuid "9d793bbb-a5e9-4dbf-bf85-09ff251a913a")
+		)
+		(instances
+			(project "Gantry Hub V2 PCB"
+				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -9465,6 +9475,17 @@
 				)
 			)
 		)
+		(property "Digikey" "CP-037A-ND"
+			(at 262.89 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "c9ef72f4-e4a0-4c19-8979-c3e123cb985c")
 		)
@@ -9701,6 +9722,17 @@
 				)
 			)
 		)
+		(property "Digikey" "13-AC1206FR-0714K3LCT-ND"
+			(at 116.84 149.86 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "9998283e-4e1e-4ea0-8762-b1aac01ca821")
 		)
@@ -9795,6 +9827,95 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Mini-DIN-4")
+		(at 194.31 87.63 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5f7d70b8-2aa4-4558-b95a-5394e6aea319")
+		(property "Reference" "J5"
+			(at 194.3277 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Mini-DIN-4"
+			(at 194.3277 80.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "lib_footprints:CUI_MD-40SM"
+			(at 194.31 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "http://service.powerdynamics.com/ec/Catalog17/Section%2011.pdf"
+			(at 194.31 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "4-pin Mini-DIN connector"
+			(at 194.31 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "3640b3db-6bfb-4394-ac0a-01ec78c5db79")
+		)
+		(pin "3"
+			(uuid "3748ba7c-0eef-43f5-a147-b56f75bb162e")
+		)
+		(pin "1"
+			(uuid "29837878-3fbd-4600-892d-ea0ffc686f98")
+		)
+		(pin "4"
+			(uuid "e3ae675e-2ca9-48d5-85a1-a24e6afdf749")
+		)
+		(pin "SHIELD"
+			(uuid "cc49c97c-7cc7-4949-9d4e-8c9854b813f2")
+		)
+		(instances
+			(project "Gantry Hub V2 PCB"
+				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
+					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 88.9 181.61 0)
 		(unit 1)
@@ -9861,6 +9982,17 @@
 				)
 			)
 		)
+		(property "Digikey" "YAG3805CT-ND"
+			(at 88.9 181.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "4c1d13e5-36f4-4f58-825a-a42c77e34e3c")
 		)
@@ -9871,109 +10003,6 @@
 			(project "Gantry Hub V2 PCB"
 				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
 					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:DIN-4")
-		(at 194.31 85.09 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "663ed340-6fa8-4d7c-87b7-97ed08212ffb")
-		(property "Reference" "J5"
-			(at 194.3099 74.93 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "DIN-4"
-			(at 194.3099 77.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib_footprints:CUI_SDF-40J"
-			(at 194.31 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
-			(at 194.31 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "4-pin DIN connector"
-			(at 194.31 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Digikey" "CP-7040-ND"
-			(at 194.31 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "4"
-			(uuid "8000336e-5aa5-4eaa-9eb3-b9bad60fa50a")
-		)
-		(pin "3"
-			(uuid "9dde4fdc-7e2e-4a47-9968-1bbb3db10a15")
-		)
-		(pin "2"
-			(uuid "423a8f5b-919b-4977-be03-a4266d92c140")
-		)
-		(pin "1"
-			(uuid "2b597f75-f680-483d-8d09-e17bb4c706f4")
-		)
-		(pin "S1"
-			(uuid "dd4ad449-4d54-4a9a-a25f-838bc140ff85")
-		)
-		(pin "S2"
-			(uuid "03e4cf0b-c0ef-4239-9788-8dc81b6b756d")
-		)
-		(instances
-			(project "Gantry Hub V2 PCB"
-				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
-					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -10089,6 +10118,95 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Mini-DIN-4")
+		(at 218.44 87.63 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7181cb63-8556-46a9-8922-ebf404813787")
+		(property "Reference" "J4"
+			(at 218.4577 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Mini-DIN-4"
+			(at 218.4577 80.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "lib_footprints:CUI_MD-40SM"
+			(at 218.44 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "http://service.powerdynamics.com/ec/Catalog17/Section%2011.pdf"
+			(at 218.44 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "4-pin Mini-DIN connector"
+			(at 218.44 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "d0edb070-baec-4684-b56b-47d411b0d062")
+		)
+		(pin "3"
+			(uuid "79944ee2-cc7d-4887-b0c1-d3f4ca0cf5ba")
+		)
+		(pin "1"
+			(uuid "d9e554b9-7d58-4a8b-85f0-c0615adda300")
+		)
+		(pin "4"
+			(uuid "32228974-ce8a-497f-a0cd-f75e242771fc")
+		)
+		(pin "SHIELD"
+			(uuid "6b937a6c-c021-4d69-bae2-397e91777566")
+		)
+		(instances
+			(project "Gantry Hub V2 PCB"
+				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
+					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 60.96 172.72 0)
 		(mirror x)
@@ -10146,6 +10264,17 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 60.96 172.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "311-1179-1-ND"
 			(at 60.96 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -10658,6 +10787,17 @@
 				)
 			)
 		)
+		(property "Digikey" "2648-SC0915CT-ND"
+			(at 31.75 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "35"
 			(uuid "297a65d4-ee16-42ac-b11c-9040a604bc29")
 		)
@@ -11050,6 +11190,17 @@
 				)
 			)
 		)
+		(property "Digikey" "311-1179-1-ND"
+			(at 33.02 148.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "45ac27e4-fc47-46f9-bc42-a8c6e2e2017f")
 		)
@@ -11060,110 +11211,6 @@
 			(project "Gantry Hub V2 PCB"
 				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
 					(reference "C6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_name "DIN-4_1")
-		(lib_id "Connector:DIN-4")
-		(at 219.71 85.09 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c953b3dd-7584-4639-958b-6293fef906b8")
-		(property "Reference" "J4"
-			(at 219.7099 74.93 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "DIN-4"
-			(at 219.7099 77.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib_footprints:CUI_SDF-40J"
-			(at 219.71 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.cuidevices.com/product/resource/sdf-j.pdf"
-			(at 219.71 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "4-pin DIN connector"
-			(at 219.71 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Digikey" "CP-7040-ND"
-			(at 219.71 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "4"
-			(uuid "d4f90d37-ad9e-407b-8a95-06dc284fab3b")
-		)
-		(pin "3"
-			(uuid "1f21bf0f-1cce-4ff3-8030-50360bd3c0cf")
-		)
-		(pin "2"
-			(uuid "1acf64f5-8ffc-476c-9109-26e09581ddbd")
-		)
-		(pin "1"
-			(uuid "12fa821a-2bd9-4adc-935a-cd8f6fe9f56c")
-		)
-		(pin "S1"
-			(uuid "c8c230e2-654c-4f6f-8354-35ec9d98d40b")
-		)
-		(pin "S2"
-			(uuid "898e4f8d-0f16-48a5-a6f5-60c155b55f53")
-		)
-		(instances
-			(project "Gantry Hub V2 PCB"
-				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
-					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -11588,6 +11635,17 @@
 				)
 			)
 		)
+		(property "Digikey" "311-1959-1-ND"
+			(at 24.13 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "521ab3e6-9a17-4f6c-a1b9-9fbe0418ae46")
 		)
@@ -11683,7 +11741,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 163.83 59.69 0)
+		(at 182.88 58.42 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11694,7 +11752,7 @@
 		(fields_autoplaced yes)
 		(uuid "e62df3e9-0a88-41c6-ae55-e3b6ca80cd35")
 		(property "Reference" "#PWR012"
-			(at 163.83 63.5 0)
+			(at 182.88 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11705,7 +11763,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 163.83 54.61 0)
+			(at 182.88 53.34 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11715,7 +11773,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 163.83 59.69 0)
+			(at 182.88 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11726,7 +11784,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 163.83 59.69 0)
+			(at 182.88 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11737,7 +11795,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 163.83 59.69 0)
+			(at 182.88 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11827,6 +11885,17 @@
 				)
 			)
 		)
+		(property "Digikey" "CP-037A-ND"
+			(at 262.89 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "48ec5287-129c-46e6-9c9c-b3fb7a843e9e")
 		)
@@ -11900,6 +11969,17 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 69.85 177.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Digikey" "311-1959-1-ND"
 			(at 69.85 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -12109,6 +12189,17 @@
 				)
 			)
 		)
+		(property "Digikey" "YAG3805CT-ND"
+			(at 97.79 181.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "06843a69-9ffc-43c2-9bc1-c0a90161f50f")
 		)
@@ -12119,84 +12210,6 @@
 			(project "Gantry Hub V2 PCB"
 				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
 					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+24V")
-		(at 201.93 82.55 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fe33094c-f897-4ad0-bd02-d5a96ec0fd10")
-		(property "Reference" "#PWR019"
-			(at 201.93 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+24V"
-			(at 201.93 77.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 201.93 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 201.93 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+24V\""
-			(at 201.93 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "617533d6-d80d-423b-aa9b-eed671dcf4c4")
-		)
-		(instances
-			(project "Gantry Hub V2 PCB"
-				(path "/6cb369f5-f711-4187-8635-e032ee1f52a7"
-					(reference "#PWR019")
 					(unit 1)
 				)
 			)
