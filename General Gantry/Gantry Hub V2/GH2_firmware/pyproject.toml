@@ -1,0 +1,16 @@
+[project]
+name = "gh2-firmware"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "pyserial>=3.5",
+    "click>=8.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

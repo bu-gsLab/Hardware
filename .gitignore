@@ -11,3 +11,7 @@ lockfile.lck
 *.3mf
 *.stl
 *.zip
+.directory
+*__pycache__/
+*.idea/
+*.junie/
