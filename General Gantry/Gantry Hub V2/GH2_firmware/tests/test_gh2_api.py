@@ -10,6 +10,16 @@ from gh2_api import (
     GH2TimeoutError,
 )
 from msrc.protocol import ProtocolHandler
+from msrc.tpic6b595 import (
+    TPIC6B595Chain,
+    map_bank_channel_to_bit,
+    DEFAULT_CHANNEL_MAP,
+    PASS_THROUGH_CHANNEL_MAP,
+    BANK_0_J6A_MAP,
+    BANK_1_J6B_MAP,
+    BANK_2_J2A_MAP,
+    BANK_3_J2B_MAP,
+)
 
 
 class MockSerial:
@@ -50,13 +60,69 @@ class MockSerial:
 
 
 class MockShiftRegister:
-    def __init__(self):
-        self.data = None
+    def __init__(self, channel_map=None):
+        self.data = b"\x00" * 8
         self.enabled = False
         self.cleared = False
+        self.state = 0
+        self.num_banks = 4
+        self.channels_per_bank = 16
+        self.channel_map = channel_map if channel_map is not None else DEFAULT_CHANNEL_MAP
+
+    def map_channel(self, bank: int, channel: int) -> int:
+        if self.channel_map is not None:
+            if callable(self.channel_map):
+                return self.channel_map(bank, channel)
+            return self.channel_map[bank * 16 + channel]
+        return DEFAULT_CHANNEL_MAP[bank * 16 + channel]
 
     def write(self, data: bytes):
-        self.data = data
+        self.data = bytes(data)
+        self.state = int.from_bytes(data, "big")
+
+    def write_int(self, value: int):
+        self.state = value
+        self.data = value.to_bytes(8, "big")
+
+    def write_bank(self, bank: int, value: int):
+        if not 0 <= bank < self.num_banks:
+            raise ValueError(f"Invalid bank {bank}")
+        if not 0 <= value <= 0xFFFF:
+            raise ValueError(f"Value 0x{value:X} out of range")
+        new_state = self.state
+        for c in range(self.channels_per_bank):
+            bit_val = (value >> c) & 1
+            bit_pos = self.map_channel(bank, c)
+            if bit_val:
+                new_state |= (1 << bit_pos)
+            else:
+                new_state &= ~(1 << bit_pos)
+        self.write_int(new_state)
+
+    def set_channel(self, bank: int, channel: int, state: bool | int):
+        if not 0 <= bank < self.num_banks:
+            raise ValueError(f"Invalid bank {bank}")
+        if not 0 <= channel < self.channels_per_bank:
+            raise ValueError(f"Invalid channel {channel}")
+        bit_pos = self.map_channel(bank, channel)
+        new_state = self.state
+        if state:
+            new_state |= (1 << bit_pos)
+        else:
+            new_state &= ~(1 << bit_pos)
+        self.write_int(new_state)
+
+    def get_channel(self, bank: int, channel: int) -> int:
+        bit_pos = self.map_channel(bank, channel)
+        return (self.state >> bit_pos) & 1
+
+    def get_bank(self, bank: int) -> int:
+        val = 0
+        for c in range(self.channels_per_bank):
+            bit_pos = self.map_channel(bank, c)
+            if (self.state >> bit_pos) & 1:
+                val |= (1 << c)
+        return val
 
     def set_enabled(self, enabled: bool):
         self.enabled = enabled
@@ -64,6 +130,7 @@ class MockShiftRegister:
     def clear(self):
         self.cleared = True
         self.data = b"\x00" * 8
+        self.state = 0
 
 
 class MockDAC:
@@ -161,6 +228,178 @@ def test_protocol_sr_enable_and_clear():
 
     assert handler.process_command("SR_CLEAR") == "OK"
     assert sr.cleared is True
+
+
+def test_shift_register_mapping():
+    # Default mapping matches valve_block_interface.kicad_sch:
+    # Bank 0 -> J6A
+    for ch in range(16):
+        assert map_bank_channel_to_bit(0, ch) == BANK_0_J6A_MAP[ch]
+    # Bank 1 -> J6B
+    for ch in range(16):
+        assert map_bank_channel_to_bit(1, ch) == BANK_1_J6B_MAP[ch]
+    # Bank 2 -> J2A
+    for ch in range(16):
+        assert map_bank_channel_to_bit(2, ch) == BANK_2_J2A_MAP[ch]
+    # Bank 3 -> J2B
+    for ch in range(16):
+        assert map_bank_channel_to_bit(3, ch) == BANK_3_J2B_MAP[ch]
+
+    # Verify all 64 bits from 0 to 63 are uniquely mapped
+    all_bits = [map_bank_channel_to_bit(b, c) for b in range(4) for c in range(16)]
+    assert sorted(all_bits) == list(range(64))
+
+    # Pass-through mapping tests
+    for b in range(4):
+        for ch in range(16):
+            assert map_bank_channel_to_bit(b, ch, mapping=PASS_THROUGH_CHANNEL_MAP) == b * 16 + ch
+
+    # Error handling for out of range bank/channel
+    with pytest.raises(ValueError):
+        map_bank_channel_to_bit(-1, 0)
+    with pytest.raises(ValueError):
+        map_bank_channel_to_bit(4, 0)
+    with pytest.raises(ValueError):
+        map_bank_channel_to_bit(0, -1)
+    with pytest.raises(ValueError):
+        map_bank_channel_to_bit(0, 16)
+
+    # Custom mapping list
+    reversed_map = list(reversed(range(64)))
+    assert map_bank_channel_to_bit(0, 0, mapping=reversed_map) == 63
+    assert map_bank_channel_to_bit(3, 15, mapping=reversed_map) == 0
+
+    # Custom mapping callable
+    def custom_fn(b, c):
+        return (b * 16 + (15 - c))
+    assert map_bank_channel_to_bit(0, 0, mapping=custom_fn) == 15
+    assert map_bank_channel_to_bit(0, 15, mapping=custom_fn) == 0
+
+
+def test_tpic6b595_chain_standalone():
+    # 1. Test with default schematic mapping
+    chain = TPIC6B595Chain(num_devices=8)
+    assert chain.state == 0
+    assert chain.num_banks == 4
+    assert chain.channels_per_bank == 16
+
+    # Write Bank 0: 0x1234
+    chain.write_bank(0, 0x1234)
+    assert chain.get_bank(0) == 0x1234
+    assert chain.get_bank(1) == 0
+    expected_b0_state = sum((1 << BANK_0_J6A_MAP[c]) for c in range(16) if (0x1234 >> c) & 1)
+    assert chain.state == expected_b0_state
+
+    # Write Bank 1: 0xABCD (Bank 0 state preserved!)
+    chain.write_bank(1, 0xABCD)
+    assert chain.get_bank(0) == 0x1234
+    assert chain.get_bank(1) == 0xABCD
+    expected_b1_state = sum((1 << BANK_1_J6B_MAP[c]) for c in range(16) if (0xABCD >> c) & 1)
+    assert chain.state == (expected_b0_state | expected_b1_state)
+
+    # Write Bank 3: 0xFFFF (Bank 0 and 1 preserved)
+    chain.write_bank(3, 0xFFFF)
+    assert chain.get_bank(0) == 0x1234
+    assert chain.get_bank(1) == 0xABCD
+    assert chain.get_bank(3) == 0xFFFF
+
+    # Single channel writes
+    # Set bank 0, channel 0 to 1 -> 0x1235
+    chain.set_channel(0, 0, 1)
+    assert chain.get_channel(0, 0) == 1
+    assert chain.get_bank(0) == 0x1235
+    assert chain.get_bank(1) == 0xABCD
+    assert chain.get_bank(3) == 0xFFFF
+
+    # Clear channel 0 in bank 0
+    chain.set_channel(0, 0, 0)
+    assert chain.get_channel(0, 0) == 0
+    assert chain.get_bank(0) == 0x1234
+
+    # Clear all
+    chain.clear()
+    assert chain.state == 0
+    assert chain.get_bank(0) == 0
+    assert chain.get_bank(1) == 0
+
+    # 2. Test with pass-through mapping
+    chain_pt = TPIC6B595Chain(num_devices=8, channel_map=PASS_THROUGH_CHANNEL_MAP)
+    chain_pt.write_bank(0, 0x1234)
+    assert chain_pt.state == 0x1234
+    chain_pt.write_bank(1, 0xABCD)
+    assert chain_pt.state == (0xABCD << 16) | 0x1234
+
+    # Validation errors
+    with pytest.raises(ValueError):
+        chain.write_bank(4, 0x1234)
+    with pytest.raises(ValueError):
+        chain.write_bank(0, 0x10000)
+    with pytest.raises(ValueError):
+        chain.write_bank(0, -1)
+    with pytest.raises(ValueError):
+        chain.set_channel(4, 0, 1)
+    with pytest.raises(ValueError):
+        chain.set_channel(0, 16, 1)
+
+
+def test_protocol_sr_bank_and_channel_write():
+    sr = MockShiftRegister()
+    handler = ProtocolHandler(sr, MockDAC(), MockDigitalOutputs())
+
+    # Bank writes
+    assert handler.process_command("SR_WRITE_BANK 0 0x1234") == "OK"
+    assert sr.get_bank(0) == 0x1234
+
+    # 4-char hex string without 0x
+    assert handler.process_command("SR_WRITE_BANK 1 ABCD") == "OK"
+    assert sr.get_bank(0) == 0x1234
+    assert sr.get_bank(1) == 0xABCD
+
+    # Decimal value
+    assert handler.process_command("SR_WRITE_BANK 2 255") == "OK"
+    assert sr.get_bank(2) == 255
+
+    # Alias SR_BANK
+    assert handler.process_command("SR_BANK 3 0x0001") == "OK"
+    assert sr.get_bank(3) == 1
+
+    # SR_WRITE with 2 args (bank write)
+    assert handler.process_command("SR_WRITE 0 0x5555") == "OK"
+    assert sr.get_bank(0) == 0x5555
+
+    # Single channel writes
+    # SR_WRITE_CHANNEL bank ch val
+    assert handler.process_command("SR_WRITE_CHANNEL 0 1 1") == "OK"
+    assert sr.get_channel(0, 1) == 1
+
+    # Aliases
+    assert handler.process_command("SR_SET_CHANNEL 0 1 0") == "OK"
+    assert sr.get_channel(0, 1) == 0
+
+    assert handler.process_command("SR_CHANNEL 1 0 1") == "OK"
+    assert sr.get_channel(1, 0) == 1
+
+    # SR_WRITE with 3 args (channel write)
+    assert handler.process_command("SR_WRITE 1 0 0") == "OK"
+    assert sr.get_channel(1, 0) == 0
+
+    # SR_GET
+    assert handler.process_command("SR_GET").startswith("OK ")
+    assert handler.process_command("SR_GET 0") == "OK 0:5555"
+    assert handler.process_command("SR_GET 0 0") == "OK 0:0:1"  # 0x5555 bit 0 is 1
+
+    # Error handling
+    assert handler.process_command("SR_WRITE_BANK 4 0x1234") == "ERR INVALID_BANK"
+    assert handler.process_command("SR_WRITE_BANK -1 0x1234") == "ERR INVALID_BANK"
+    assert handler.process_command("SR_WRITE_BANK 0 0x10000") == "ERR VALUE_OUT_OF_RANGE"
+    assert handler.process_command("SR_WRITE_BANK 0 -1") == "ERR VALUE_OUT_OF_RANGE"
+    assert handler.process_command("SR_WRITE_BANK 0 INVALID") == "ERR INVALID_VALUE"
+    assert handler.process_command("SR_WRITE_BANK 0") == "ERR MISSING_ARGUMENTS"
+
+    assert handler.process_command("SR_WRITE_CHANNEL 4 0 1") == "ERR INVALID_BANK"
+    assert handler.process_command("SR_WRITE_CHANNEL 0 16 1") == "ERR INVALID_CHANNEL"
+    assert handler.process_command("SR_WRITE_CHANNEL 0 0 2") == "ERR INVALID_VALUE"
+    assert handler.process_command("SR_WRITE_CHANNEL 0 0") == "ERR MISSING_ARGUMENTS"
 
 
 def test_protocol_dac_write():
@@ -283,6 +522,73 @@ def test_controller_shift_registers_validation(loopback_fixture):
         controller.write_shift_registers("invalid string")
 
 
+def test_controller_bank_and_channel(loopback_fixture):
+    controller = loopback_fixture["controller"]
+    sr = loopback_fixture["sr"]
+
+    # Write bank 0 as int
+    controller.write_shift_register_bank(0, 0x1234)
+    assert sr.get_bank(0) == 0x1234
+    assert controller.get_shift_register_bank(0) == 0x1234
+
+    # Write bank 1 as hex string
+    controller.write_shift_register_bank(1, "0xABCD")
+    assert sr.get_bank(0) == 0x1234
+    assert sr.get_bank(1) == 0xABCD
+    assert controller.get_shift_register_bank(1) == 0xABCD
+
+    # Write bank 2 as 4-char hex string
+    controller.write_shift_register_bank(2, "5555")
+    assert sr.get_bank(2) == 0x5555
+
+    # Write bank 3 as 2-byte bytes
+    controller.write_shift_register_bank(3, b"\xAA\xAA")
+    assert sr.get_bank(3) == 0xAAAA
+    assert controller.get_shift_register_bank(3) == 0xAAAA
+    expected_state = (
+        sum((1 << BANK_0_J6A_MAP[c]) for c in range(16) if (0x1234 >> c) & 1)
+        | sum((1 << BANK_1_J6B_MAP[c]) for c in range(16) if (0xABCD >> c) & 1)
+        | sum((1 << BANK_2_J2A_MAP[c]) for c in range(16) if (0x5555 >> c) & 1)
+        | sum((1 << BANK_3_J2B_MAP[c]) for c in range(16) if (0xAAAA >> c) & 1)
+    )
+    assert sr.state == expected_state
+    assert controller.get_shift_register_state() == sr.state
+
+    # Set single channel in bank 0
+    controller.set_shift_register_channel(0, 0, True)
+    assert controller.get_shift_register_channel(0, 0) == 1
+    assert sr.get_bank(0) == 0x1235
+
+    controller.set_shift_register_channel(0, 0, False)
+    assert controller.get_shift_register_channel(0, 0) == 0
+    assert sr.get_bank(0) == 0x1234
+
+    # Validation errors
+    with pytest.raises(ValueError):
+        controller.write_shift_register_bank(4, 0x1234)
+    with pytest.raises(ValueError):
+        controller.write_shift_register_bank(-1, 0x1234)
+    with pytest.raises(ValueError):
+        controller.write_shift_register_bank(0, 0x10000)
+    with pytest.raises(ValueError):
+        controller.write_shift_register_bank(0, -1)
+    with pytest.raises(ValueError):
+        controller.write_shift_register_bank(0, b"\x01")  # not 2 bytes
+    with pytest.raises(TypeError):
+        controller.write_shift_register_bank(0, [1, 2])
+
+    with pytest.raises(ValueError):
+        controller.set_shift_register_channel(4, 0, True)
+    with pytest.raises(ValueError):
+        controller.set_shift_register_channel(0, 16, True)
+    with pytest.raises(ValueError):
+        controller.get_shift_register_bank(4)
+    with pytest.raises(ValueError):
+        controller.get_shift_register_channel(4, 0)
+    with pytest.raises(ValueError):
+        controller.get_shift_register_channel(0, 16)
+
+
 def test_controller_loopback_dac(loopback_fixture):
     controller = loopback_fixture["controller"]
     dac = loopback_fixture["dac"]
@@ -373,6 +679,8 @@ def test_cli_help():
     assert "--port" in result.output
     assert "--test" in result.output
     assert "--ping" in result.output
+    assert "--sr-bank" in result.output
+    assert "--sr-channel" in result.output
 
 
 def test_cli_no_args_shows_help():
@@ -432,6 +740,18 @@ def test_cli_commands():
         assert res.exit_code == 0
         mock_ctrl.write_shift_registers.assert_called_with(bytes.fromhex("0123456789ABCDEF"))
         assert "Shift registers updated with 0x0123456789ABCDEF" in res.output
+
+        # --sr-bank
+        res = runner.invoke(cli, ["--sr-bank", "0", "0x1234"])
+        assert res.exit_code == 0
+        mock_ctrl.write_shift_register_bank.assert_called_with(0, "0x1234")
+        assert "Shift register bank 0 updated with 0x1234" in res.output
+
+        # --sr-channel
+        res = runner.invoke(cli, ["--sr-channel", "1", "5", "1"])
+        assert res.exit_code == 0
+        mock_ctrl.set_shift_register_channel.assert_called_with(1, 5, 1)
+        assert "Shift register bank 1 channel 5 set to 1" in res.output
 
         # --sr-enable 1
         res = runner.invoke(cli, ["--sr-enable", "1"])

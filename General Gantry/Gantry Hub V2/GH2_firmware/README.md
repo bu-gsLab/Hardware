@@ -119,10 +119,16 @@ with GH2Controller(port="/dev/ttyACM0", baudrate=115200) as gh2:
     # Enable outputs (\bar{G} driven LOW)
     gh2.enable_shift_registers(True)
 
-    # Write 64 bits (supports int, 8-byte bytes, or list of 8 ints)
+    # Program Bank 0 (16-bit word, preserves banks 1-3)
+    gh2.write_shift_register_bank(bank=0, value=0xAAAA)
+
+    # Set single channel in Bank 1 (Channel 5 HIGH, preserves all others)
+    gh2.set_shift_register_channel(bank=1, channel=5, state=True)
+
+    # Full 64-bit write (supports int, 8-byte bytes, or list of 8 ints)
     gh2.write_shift_registers(0xAAAAAAAAAAAAAAAA)
 
-    # Clear shift registers (\bar{SRCLR} pulsed)
+    # Clear shift registers (\bar{SRCLR} pulsed, state reset to 0)
     gh2.clear_shift_registers()
 ```
 
@@ -137,15 +143,25 @@ with GH2Controller(port="/dev/ttyACM0", baudrate=115200) as gh2:
 - `send_command(command: str) -> str`: Sends a raw ASCII command and returns the response string.
 
 #### TPIC6B595N Shift Register Methods
+- `write_shift_register_bank(bank: int, value: Union[int, str, bytes, bytearray]) -> None`:
+  Updates a single 16-bit bank (`0`, `1`, `2`, or `3`) with a 16-bit value (`0-65535`, hex string, or 2-byte bytes), preserves other banks, and writes the updated 64-bit pattern to outputs.
+- `set_shift_register_channel(bank: int, channel: int, state: Union[bool, int]) -> None`:
+  Updates a single channel (`0-15`) within a bank (`0-3`) to `1` (HIGH) or `0` (LOW) while preserving all other channels.
+- `get_shift_register_state() -> int`:
+  Queries the current 64-bit integer output pattern stored in firmware.
+- `get_shift_register_bank(bank: int) -> int`:
+  Queries the 16-bit value of a specified bank (`0-3`).
+- `get_shift_register_channel(bank: int, channel: int) -> int`:
+  Queries the state (`0` or `1`) of a single channel (`0-15`) in a bank (`0-3`).
 - `write_shift_registers(data: Union[bytes, bytearray, int, Sequence[int]]) -> None`:
-  Shifts 64 bits (8 bytes, MSB first) across the 8-stage chain and pulses latch clock $R\_ck$.
+  Shifts 64 bits (8 bytes, MSB first) across the 8-stage chain, updates stored firmware state, and pulses latch clock $R\_ck$.
   - `int`: 64-bit unsigned integer (e.g. `0x0123456789ABCDEF`).
   - `bytes` / `bytearray`: Exactly 8 bytes in length.
   - `Sequence[int]`: List/tuple of 8 integers (each `0-255`).
 - `enable_shift_registers(enabled: bool = True) -> None`:
   Controls active-low output enable ($\overline{\text{G}}$). Passing `True` pulls $\overline{\text{G}}$ LOW (outputs enabled). Passing `False` pulls $\overline{\text{G}}$ HIGH (outputs disabled / high-impedance).
 - `clear_shift_registers() -> None`:
-  Pulses $\overline{\text{SRCLR}}$ LOW then HIGH to clear internal shift register stages.
+  Pulses $\overline{\text{SRCLR}}$ LOW then HIGH to clear internal shift register stages and resets stored state to 0.
 
 #### MCP4802 DAC Methods
 - `set_dac(channel: Union[int, str], value: int, gain_2x: bool = False, active: bool = True) -> None`:
@@ -198,6 +214,8 @@ python gh2_api.py [OPTIONS]
 | `--set-pin` | `PIN VAL` | Set digital output channel state (`VAL`: `0` or `1`). Allowed channels: `0`, `1`, `2`, `3`. |
 | `--toggle-pin` | `PIN` | Invert the state of the specified digital output channel (`0-3`). |
 | `--dac` | `CH VAL` | Write an 8-bit value (`0-255`) to DAC channel `0`/`1` or `A`/`B`. |
+| `--sr-bank` | `BANK VAL` | Write 16-bit value (hex or int) to shift register bank (`0-3`). |
+| `--sr-channel` | `BANK CH VAL` | Set single channel (`0-15`) in bank (`0-3`) to state (`0` or `1`). |
 | `--sr-write` | `HEX64` | Write 64 bits to the shift registers as 16 hexadecimal characters. |
 | `--sr-enable` | `[0\|1]` | Enable (`1`) or disable (`0`) shift register open-drain outputs. |
 | `--sr-clear` | Flag | Pulse $\overline{\text{SRCLR}}$ low to reset internal shift registers. |
@@ -224,7 +242,13 @@ python gh2_api.py --port /dev/ttyACM0 --toggle-pin 1
 # 6. Set DAC Channel A to mid-scale (approx 1.024V)
 python gh2_api.py --port /dev/ttyACM0 --dac A 128
 
-# 7. Clear shift registers, enable outputs, and shift a 64-bit pattern
+# 7. Update Bank 0 with 16-bit pattern (preserves other banks)
+python gh2_api.py --port /dev/ttyACM0 --sr-bank 0 0xAAAA
+
+# 8. Set single channel in Bank 1 (Channel 5 HIGH, preserves all others)
+python gh2_api.py --port /dev/ttyACM0 --sr-channel 1 5 1
+
+# 9. Clear shift registers, enable outputs, and shift a 64-bit pattern
 python gh2_api.py --port /dev/ttyACM0 --sr-clear
 python gh2_api.py --port /dev/ttyACM0 --sr-enable 1
 python gh2_api.py --port /dev/ttyACM0 --sr-write AA55AA55AA55AA55
@@ -235,6 +259,30 @@ python gh2_api.py --port /dev/ttyACM0 --sr-write AA55AA55AA55AA55
 ## USB Serial ASCII Protocol Specification
 
 The Pico firmware and host communicate using ASCII strings terminated with `\r\n` or `\n`.
+
+### Shift Register Bank and Channel Architecture
+
+The 64 shift register output stages are divided into four 16-bit banks (Banks 0–3), with 16 channels per bank (Channels 0–15).
+Banks 0–3 map to the physical valve block connectors defined in `valve_block_interface.kicad_sch`:
+- **Bank 0**: Connector **J6A** (Schematic nets `CHANNEL_33` through `CHANNEL_48`)
+- **Bank 1**: Connector **J6B** (Schematic nets `CHANNEL_49` through `CHANNEL_64`)
+- **Bank 2**: Connector **J2A** (Schematic nets `CHANNEL_01` through `CHANNEL_16`)
+- **Bank 3**: Connector **J2B** (Schematic nets `CHANNEL_17` through `CHANNEL_32`)
+
+The 8 daisy-chained TPIC6B595N driver ICs are ordered along the serial data path from the Raspberry Pi Pico `S_IN` line as:
+1. `U9` (Bits 0–7, `DRAIN0`–`DRAIN7`)
+2. `U8` (Bits 8–15, `DRAIN0`–`DRAIN7`)
+3. `U4` (Bits 16–23, `DRAIN0`–`DRAIN7`)
+4. `U1` (Bits 24–31, `DRAIN0`–`DRAIN7`)
+5. `U13` (Bits 32–39, `DRAIN0`–`DRAIN7`)
+6. `U12` (Bits 40–47, `DRAIN0`–`DRAIN7`)
+7. `U11` (Bits 48–55, `DRAIN0`–`DRAIN7`)
+8. `U10` (Bits 56–63, `DRAIN0`–`DRAIN7`)
+
+The firmware maintains the 64-bit output state in memory. When a bank or channel write is received:
+1. The firmware translates `(bank, channel)` to the exact shift register bit position via `DEFAULT_CHANNEL_MAP` (or a custom/pass-through mapping).
+2. The firmware updates the affected bits in its stored state while keeping all other bits unchanged.
+3. The new 64-bit pattern is shifted across the TPIC6B595N chain and latched to outputs.
 
 ### Command Framing & Sentinel Character (`$`)
 
@@ -249,9 +297,12 @@ To make serial communication resilient against partial, interrupted, or noisy tr
 | Command | Arguments | Success Response | Error Response | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | `PING` | *None* | `PONG` | `ERR ...` | Connection heartbeat |
+| `SR_WRITE_BANK` | `<bank:0-3> <val:16-bit>` | `OK` | `ERR INVALID_BANK` / `ERR VALUE_OUT_OF_RANGE` | Updates a 16-bit bank (hex or decimal) and latches output |
+| `SR_WRITE_CHANNEL` | `<bank:0-3> <ch:0-15> <val:0\|1>` | `OK` | `ERR INVALID_CHANNEL` / `ERR INVALID_VALUE` | Updates a single channel in a bank and latches output |
+| `SR_GET` | `[bank:0-3] [ch:0-15]` | `OK <val>` | `ERR INVALID_BANK` / `ERR INVALID_CHANNEL` | Queries stored 64-bit pattern, bank, or channel |
 | `SR_WRITE` | `<hex_64>` | `OK` | `ERR INVALID_HEX_LENGTH` | Shifts 8 bytes (16 hex chars) and pulses $R\_ck$ |
 | `SR_ENABLE`| `<0\|1>` | `OK` | `ERR INVALID_ENABLE_ARG` | Controls $\overline{\text{G}}$ (`1` = LOW / enabled, `0` = HIGH / disabled) |
-| `SR_CLEAR` | *None* | `OK` | `ERR ...` | Pulses $\overline{\text{SRCLR}}$ LOW then HIGH |
+| `SR_CLEAR` | *None* | `OK` | `ERR ...` | Pulses $\overline{\text{SRCLR}}$ LOW then HIGH and clears stored state |
 | `DAC_WRITE`| `<ch> <val> [gain] [act]` | `OK` | `ERR VALUE_OUT_OF_RANGE` | Writes 16-bit word to MCP4802 via SPI1 |
 | `DOUT_SET` | `<pin:0-3> <val>` | `OK` | `ERR INVALID_PIN` | Sets output state of digital channel 0, 1, 2, or 3 |
 | `DOUT_TOGGLE`| `<pin:0-3>` | `OK <new_val>` | `ERR INVALID_PIN` | Inverts specified output channel (0-3) |

@@ -230,6 +230,105 @@ class GH2Controller:
         if resp != "OK":
             raise GH2ProtocolError(f"Unexpected response to SR_WRITE: {resp}")
 
+    def write_shift_register_bank(
+        self, bank: int, value: Union[int, str, bytes, bytearray]
+    ) -> None:
+        """
+        Write a 16-bit word to a shift register bank (0-3).
+
+        Updates only the specified 16-bit bank while preserving other banks' states.
+
+        :param bank: Shift register bank index (0, 1, 2, or 3).
+        :param value: 16-bit value as an int (0-65535), hex string, or 2-byte bytes/bytearray.
+        :raises ValueError: If bank or value is out of range.
+        :raises GH2ProtocolError: If firmware returns an error.
+        """
+        if bank not in (0, 1, 2, 3):
+            raise ValueError(f"Invalid bank {bank}. Bank must be 0, 1, 2, or 3.")
+
+        if isinstance(value, (bytes, bytearray)):
+            if len(value) != 2:
+                raise ValueError(f"Bank bytes must be exactly 2 bytes (got {len(value)})")
+            val_int = int.from_bytes(value, "big")
+        elif isinstance(value, str):
+            val_str = value.strip()
+            if val_str.lower().startswith("0x"):
+                val_int = int(val_str, 16)
+            elif len(val_str) == 4 and all(c in "0123456789abcdefABCDEF" for c in val_str):
+                val_int = int(val_str, 16)
+            else:
+                val_int = int(val_str, 10)
+        elif isinstance(value, int):
+            val_int = value
+        else:
+            raise TypeError(
+                f"Unsupported value type for bank write: {type(value).__name__}. "
+                "Expected int, str, or 2-byte bytes."
+            )
+
+        if not 0 <= val_int <= 0xFFFF:
+            raise ValueError(f"Bank value {val_int} out of 16-bit range (0-65535)")
+
+        resp = self.send_command(f"SR_WRITE_BANK {bank} 0x{val_int:04X}")
+        if resp != "OK":
+            raise GH2ProtocolError(f"Unexpected response to SR_WRITE_BANK: {resp}")
+
+    def set_shift_register_channel(
+        self, bank: int, channel: int, state: Union[bool, int]
+    ) -> None:
+        """
+        Set a single channel within a bank (0-3) to HIGH (1) or LOW (0).
+
+        Updates only the specified channel while preserving all other channels.
+
+        :param bank: Shift register bank index (0, 1, 2, or 3).
+        :param channel: Channel index within bank (0-15).
+        :param state: True/1 for HIGH, False/0 for LOW.
+        :raises ValueError: If bank or channel is out of range.
+        :raises GH2ProtocolError: If firmware returns an error.
+        """
+        if bank not in (0, 1, 2, 3):
+            raise ValueError(f"Invalid bank {bank}. Bank must be 0, 1, 2, or 3.")
+        if not 0 <= channel < 16:
+            raise ValueError(f"Invalid channel {channel}. Channel must be 0-15.")
+
+        val_arg = "1" if state else "0"
+        resp = self.send_command(f"SR_WRITE_CHANNEL {bank} {channel} {val_arg}")
+        if resp != "OK":
+            raise GH2ProtocolError(f"Unexpected response to SR_WRITE_CHANNEL: {resp}")
+
+    def get_shift_register_state(self) -> int:
+        """Read back the 64-bit shift register pattern from firmware."""
+        resp = self.send_command("SR_GET")
+        tokens = resp.split()
+        if len(tokens) == 2 and tokens[0] == "OK":
+            return int(tokens[1], 16)
+        raise GH2ProtocolError(f"Unexpected response to SR_GET: {resp}")
+
+    def get_shift_register_bank(self, bank: int) -> int:
+        """Read back the 16-bit value of a shift register bank."""
+        if bank not in (0, 1, 2, 3):
+            raise ValueError(f"Invalid bank {bank}. Bank must be 0, 1, 2, or 3.")
+        resp = self.send_command(f"SR_GET {bank}")
+        tokens = resp.split()
+        if len(tokens) == 2 and tokens[0] == "OK":
+            parts = tokens[1].split(":", 1)
+            return int(parts[1], 16)
+        raise GH2ProtocolError(f"Unexpected response to SR_GET: {resp}")
+
+    def get_shift_register_channel(self, bank: int, channel: int) -> int:
+        """Read back the state (0 or 1) of a channel within a bank."""
+        if bank not in (0, 1, 2, 3):
+            raise ValueError(f"Invalid bank {bank}. Bank must be 0, 1, 2, or 3.")
+        if not 0 <= channel < 16:
+            raise ValueError(f"Invalid channel {channel}. Channel must be 0-15.")
+        resp = self.send_command(f"SR_GET {bank} {channel}")
+        tokens = resp.split()
+        if len(tokens) == 2 and tokens[0] == "OK":
+            parts = tokens[1].split(":")
+            return int(parts[2])
+        raise GH2ProtocolError(f"Unexpected response to SR_GET: {resp}")
+
     def enable_shift_registers(self, enabled: bool = True) -> None:
         """
         Control the active-low output enable (\\bar{G}) on the TPIC6B595N chain.
@@ -414,6 +513,15 @@ def run_hardware_test(controller: GH2Controller) -> None:
     print("   -> Enabling outputs...")
     controller.enable_shift_registers(True)
 
+    print("   -> Testing 16-bit bank writes...")
+    controller.write_shift_register_bank(0, 0xAAAA)
+    controller.write_shift_register_bank(1, 0x5555)
+    time.sleep(0.05)
+
+    print("   -> Testing single channel update...")
+    controller.set_shift_register_channel(0, 0, 1)
+    time.sleep(0.05)
+
     test_patterns = [
         0xAAAAAAAAAAAAAAAA,
         0x5555555555555555,
@@ -450,6 +558,18 @@ def run_hardware_test(controller: GH2Controller) -> None:
     help="Set DAC channel (0/1 or A/B) and value (0-255)",
 )
 @click.option("--sr-write", metavar="HEX64", help="Write 16 hex chars (64 bits) to shift registers")
+@click.option(
+    "--sr-bank",
+    type=(int, str),
+    metavar="BANK VAL",
+    help="Write 16-bit value (hex or int) to shift register bank (0-3)",
+)
+@click.option(
+    "--sr-channel",
+    type=(int, int, int),
+    metavar="BANK CH VAL",
+    help="Set single channel (CH: 0-15) in bank (BANK: 0-3) to state (VAL: 0 or 1)",
+)
 @click.option("--sr-enable", type=click.Choice(["0", "1"]), help="Enable (1) or disable (0) shift registers")
 @click.option("--sr-clear", is_flag=True, help="Clear shift registers")
 @click.pass_context
@@ -464,6 +584,8 @@ def cli(
     toggle_pin: Optional[int],
     dac: Optional[Tuple[str, int]],
     sr_write: Optional[str],
+    sr_bank: Optional[Tuple[int, str]],
+    sr_channel: Optional[Tuple[int, int, int]],
     sr_enable: Optional[str],
     sr_clear: bool,
 ) -> None:
@@ -477,6 +599,8 @@ def cli(
             toggle_pin is not None,
             dac is not None,
             sr_write is not None,
+            sr_bank is not None,
+            sr_channel is not None,
             sr_enable is not None,
             sr_clear,
         ]
@@ -509,6 +633,14 @@ def cli(
             elif sr_write is not None:
                 controller.write_shift_registers(bytes.fromhex(sr_write))
                 click.echo(f"Shift registers updated with 0x{sr_write}")
+            elif sr_bank is not None:
+                bank, val_str = sr_bank
+                controller.write_shift_register_bank(bank, val_str)
+                click.echo(f"Shift register bank {bank} updated with {val_str}")
+            elif sr_channel is not None:
+                bank, ch, val = sr_channel
+                controller.set_shift_register_channel(bank, ch, val)
+                click.echo(f"Shift register bank {bank} channel {ch} set to {1 if val else 0}")
             elif sr_enable is not None:
                 controller.enable_shift_registers(sr_enable == "1")
                 click.echo(f"Shift register outputs {'enabled' if sr_enable == '1' else 'disabled'}")

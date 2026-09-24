@@ -23,24 +23,117 @@ class ProtocolHandler:
             if cmd == "PING":
                 return "PONG"
 
-            elif cmd == "SR_WRITE":
-                if len(args) != 1:
+            elif cmd in ("SR_WRITE_BANK", "SR_BANK"):
+                if len(args) != 2:
                     return "ERR MISSING_ARGUMENTS"
-                hex_str = args[0]
-                if len(hex_str) != 16:
-                    return "ERR INVALID_HEX_LENGTH"
                 try:
-                    int(hex_str, 16)
+                    bank = int(args[0])
                 except ValueError:
-                    return "ERR INVALID_HEX"
+                    return "ERR INVALID_BANK"
+                if not 0 <= bank < 4:
+                    return "ERR INVALID_BANK"
+
+                val_str = args[1]
+                try:
+                    if val_str.lower().startswith("0x"):
+                        val = int(val_str, 16)
+                    elif len(val_str) == 4 and all(c in "0123456789abcdefABCDEF" for c in val_str):
+                        val = int(val_str, 16)
+                    else:
+                        val = int(val_str, 10)
+                except ValueError:
+                    return "ERR INVALID_VALUE"
+
+                if not 0 <= val <= 0xFFFF:
+                    return "ERR VALUE_OUT_OF_RANGE"
+
+                if hasattr(self.sr, "write_bank"):
+                    self.sr.write_bank(bank, val)
+                else:
+                    self._fallback_write_bank(bank, val)
+                return "OK"
+
+            elif cmd in ("SR_WRITE_CHANNEL", "SR_SET_CHANNEL", "SR_CHANNEL"):
+                if len(args) != 3:
+                    return "ERR MISSING_ARGUMENTS"
+                try:
+                    bank = int(args[0])
+                except ValueError:
+                    return "ERR INVALID_BANK"
+                if not 0 <= bank < 4:
+                    return "ERR INVALID_BANK"
 
                 try:
-                    data = bytes.fromhex(hex_str)
-                except (AttributeError, ValueError):
-                    data = bytes(int(hex_str[i : i + 2], 16) for i in range(0, 16, 2))
+                    channel = int(args[1])
+                except ValueError:
+                    return "ERR INVALID_CHANNEL"
+                if not 0 <= channel < 16:
+                    return "ERR INVALID_CHANNEL"
 
-                self.sr.write(data)
+                if args[2] not in ("0", "1"):
+                    return "ERR INVALID_VALUE"
+                val = int(args[2])
+
+                if hasattr(self.sr, "set_channel"):
+                    self.sr.set_channel(bank, channel, val)
+                else:
+                    self._fallback_set_channel(bank, channel, val)
                 return "OK"
+
+            elif cmd == "SR_WRITE":
+                if len(args) == 0:
+                    return "ERR MISSING_ARGUMENTS"
+                elif len(args) == 1:
+                    hex_str = args[0]
+                    if len(hex_str) != 16:
+                        return "ERR INVALID_HEX_LENGTH"
+                    try:
+                        int(hex_str, 16)
+                    except ValueError:
+                        return "ERR INVALID_HEX"
+
+                    try:
+                        data = bytes.fromhex(hex_str)
+                    except (AttributeError, ValueError):
+                        data = bytes(int(hex_str[i : i + 2], 16) for i in range(0, 16, 2))
+
+                    self.sr.write(data)
+                    return "OK"
+                elif len(args) == 2:
+                    return self.process_command(f"SR_WRITE_BANK {args[0]} {args[1]}")
+                elif len(args) == 3:
+                    return self.process_command(f"SR_WRITE_CHANNEL {args[0]} {args[1]} {args[2]}")
+                else:
+                    return "ERR INVALID_ARG"
+
+            elif cmd == "SR_GET":
+                if not hasattr(self.sr, "state"):
+                    return "ERR NOT_SUPPORTED"
+                if len(args) == 0:
+                    return f"OK {self.sr.state:016X}"
+                elif len(args) == 1:
+                    try:
+                        bank = int(args[0])
+                    except ValueError:
+                        return "ERR INVALID_BANK"
+                    if not 0 <= bank < 4:
+                        return "ERR INVALID_BANK"
+                    b_val = self.sr.get_bank(bank) if hasattr(self.sr, "get_bank") else ((self.sr.state >> (bank * 16)) & 0xFFFF)
+                    return f"OK {bank}:{b_val:04X}"
+                elif len(args) == 2:
+                    try:
+                        bank = int(args[0])
+                        channel = int(args[1])
+                    except ValueError:
+                        return "ERR INVALID_ARG"
+                    if not 0 <= bank < 4:
+                        return "ERR INVALID_BANK"
+                    if not 0 <= channel < 16:
+                        return "ERR INVALID_CHANNEL"
+                    ch_val = self.sr.get_channel(bank, channel) if hasattr(self.sr, "get_channel") else ((self.sr.state >> (bank * 16 + channel)) & 1)
+                    return f"OK {bank}:{channel}:{ch_val}"
+                else:
+                    return "ERR INVALID_ARG"
 
             elif cmd == "SR_ENABLE":
                 if len(args) != 1:
@@ -144,3 +237,29 @@ class ProtocolHandler:
 
         except Exception as e:
             return f"ERR {e}"
+
+    def _fallback_write_bank(self, bank: int, value: int) -> None:
+        current_state = getattr(self.sr, "state", 0)
+        map_fn = getattr(self.sr, "map_channel", None)
+        for c in range(16):
+            bit_val = (value >> c) & 1
+            bit_pos = map_fn(bank, c) if map_fn else (bank * 16 + c)
+            if bit_val:
+                current_state |= (1 << bit_pos)
+            else:
+                current_state &= ~(1 << bit_pos)
+        self.sr.state = current_state
+        if hasattr(self.sr, "write"):
+            self.sr.write(current_state.to_bytes(8, "big"))
+
+    def _fallback_set_channel(self, bank: int, channel: int, value: int) -> None:
+        current_state = getattr(self.sr, "state", 0)
+        map_fn = getattr(self.sr, "map_channel", None)
+        bit_pos = map_fn(bank, channel) if map_fn else (bank * 16 + channel)
+        if value:
+            current_state |= (1 << bit_pos)
+        else:
+            current_state &= ~(1 << bit_pos)
+        self.sr.state = current_state
+        if hasattr(self.sr, "write"):
+            self.sr.write(current_state.to_bytes(8, "big"))
