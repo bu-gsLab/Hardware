@@ -14,8 +14,139 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 try:
     import serial
+    import serial.tools.list_ports
 except ImportError:
     serial = None  # type: ignore[assignment]
+
+try:
+    import winreg
+except ImportError:
+    winreg = None  # type: ignore[assignment]
+
+
+def _get_windows_device_interface_path(port_info: Any) -> Optional[str]:
+    """
+    Look up the direct device interface path in Windows registry for a USB serial device.
+
+    Using the device interface path (e.g. \\\\?\\USB#VID_2E8A&PID_0005...) avoids COM port
+    collisions where Windows assigns the same COM number to both an onboard ACPI serial port
+    and a USB CDC device.
+    """
+    if not sys.platform.startswith("win") or winreg is None:
+        return None
+
+    hwid = getattr(port_info, "hwid", "") or ""
+    vid = getattr(port_info, "vid", None)
+    pid = getattr(port_info, "pid", None)
+
+    try:
+        key_path = r"SYSTEM\CurrentControlSet\Control\DeviceClasses\{86e0d1e0-8089-11d0-9ce4-08003e301f73}"
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, key_path) as key:
+            i = 0
+            while True:
+                try:
+                    sub = winreg.EnumKey(key, i)
+                    i += 1
+                    sub_upper = sub.upper()
+                    if vid is not None and pid is not None:
+                        vid_pid_str = f"VID_{vid:04X}&PID_{pid:04X}".upper()
+                        if vid_pid_str in sub_upper:
+                            return r"\\?\\" + sub[4:]
+                    elif "USB" in hwid.upper():
+                        if "2E8A" in hwid.upper() and "0005" in hwid.upper():
+                            if "VID_2E8A&PID_0005" in sub_upper:
+                                return r"\\?\\" + sub[4:]
+                except OSError:
+                    break
+    except Exception:
+        pass
+    return None
+
+
+def resolve_serial_port(port: Optional[str] = None) -> str:
+    """
+    Resolve and auto-detect the serial port or device path for the GH2 / Raspberry Pi Pico.
+
+    On Windows, this automatically resolves USB device interface paths to prevent COM port
+    collisions (such as when an onboard ACPI serial port shares the same COM name as the USB device).
+
+    :param port: Optional port name (e.g. 'COM4', '/dev/ttyACM0', or device path). If None, auto-detects.
+    :return: Resolved port or device path string.
+    :raises GH2ConnectionError: If no port could be found or auto-detected.
+    """
+    if serial is None or not hasattr(serial, "tools") or not hasattr(serial.tools, "list_ports"):
+        if port:
+            return port
+        raise GH2ConnectionError("pyserial is not installed; cannot auto-detect serial port.")
+
+    try:
+        ports = list(serial.tools.list_ports.comports())
+    except Exception:
+        ports = []
+
+    # 1. If explicit port is passed
+    if port:
+        if port.startswith(r"\\?\\") or port.startswith("/dev/"):
+            return port
+
+        if sys.platform.startswith("win"):
+            # Check if any detected USB port matches this COM port name (preferring USB over ACPI)
+            matching = [p for p in ports if getattr(p, "device", "").upper() == port.upper()]
+            # Prefer USB device (e.g. VID 0x2E8A or description/hwid contains USB)
+            usb_matching = [
+                p
+                for p in matching
+                if getattr(p, "vid", None) == 0x2E8A
+                or "USB" in (getattr(p, "hwid", "") or "").upper()
+                or "USB" in (getattr(p, "description", "") or "").upper()
+            ]
+            target_info = usb_matching[0] if usb_matching else (matching[0] if matching else None)
+            if target_info:
+                dev_path = _get_windows_device_interface_path(target_info)
+                if dev_path:
+                    return dev_path
+                return getattr(target_info, "device", port)
+        return port
+
+    # 2. Auto-detection (port is None or empty)
+    pico_candidates = []
+    other_usb_candidates = []
+
+    for p in ports:
+        vid = getattr(p, "vid", None)
+        pid = getattr(p, "pid", None)
+        hwid = (getattr(p, "hwid", "") or "").upper()
+        desc = (getattr(p, "description", "") or "").upper()
+        mfg = (getattr(p, "manufacturer", "") or "").upper()
+        dev_str = (getattr(p, "device", "") or "").upper()
+
+        if (vid == 0x2E8A and pid == 0x0005) or ("2E8A:0005" in hwid) or ("PICO" in desc) or ("PICO" in mfg):
+            pico_candidates.append(p)
+        elif (
+            (vid is not None and pid is not None)
+            or ("USB" in hwid)
+            or ("USB" in desc)
+            or ("TTYACM" in dev_str)
+            or ("TTYUSB" in dev_str)
+        ):
+            other_usb_candidates.append(p)
+
+    selected = pico_candidates[0] if pico_candidates else (other_usb_candidates[0] if other_usb_candidates else None)
+
+    if selected:
+        if sys.platform.startswith("win"):
+            dev_path = _get_windows_device_interface_path(selected)
+            if dev_path:
+                return dev_path
+        return getattr(selected, "device", "")
+
+    # Fallback default if nothing detected
+    if sys.platform.startswith("win"):
+        if ports:
+            return getattr(ports[0], "device", "COM3")
+        raise GH2ConnectionError("No Raspberry Pi Pico or serial port detected. Please specify --port.")
+    else:
+        return "/dev/ttyACM0"
 
 
 class GH2Error(Exception):
@@ -82,22 +213,34 @@ class GH2Controller:
             if serial is None:
                 raise GH2ConnectionError("pyserial is not installed.")
 
-            if self.port is None:
-                raise GH2ConnectionError("No serial port specified.")
+            resolved_port = resolve_serial_port(self.port)
 
             try:
                 self._serial = serial.Serial(
-                    port=self.port,
+                    port=resolved_port,
                     baudrate=self.baudrate,
                     timeout=self.timeout,
                     write_timeout=self.timeout,
                 )
+                if hasattr(self._serial, "dtr"):
+                    try:
+                        self._serial.dtr = True
+                    except Exception:
+                        pass
+                if hasattr(self._serial, "rts"):
+                    try:
+                        self._serial.rts = True
+                    except Exception:
+                        pass
+
                 # Flush initial buffers
-                self._serial.reset_input_buffer()
-                self._serial.reset_output_buffer()
+                if hasattr(self._serial, "reset_input_buffer"):
+                    self._serial.reset_input_buffer()
+                if hasattr(self._serial, "reset_output_buffer"):
+                    self._serial.reset_output_buffer()
                 self._is_open = True
             except Exception as e:
-                raise GH2ConnectionError(f"Failed to open serial port {self.port}: {e}") from e
+                raise GH2ConnectionError(f"Failed to open serial port '{self.port or resolved_port}': {e}") from e
 
     def close(self) -> None:
         """Close the serial connection."""
@@ -539,7 +682,7 @@ def run_hardware_test(controller: GH2Controller) -> None:
 
 
 @click.command(help="Gantry Hub V2 (GH2) Serial Host Utility")
-@click.option("--port", "-p", default="/dev/ttyACM0", show_default=True, help="Serial port (e.g. /dev/ttyACM0, COM3)")
+@click.option("--port", "-p", default=None, help="Serial port (e.g. COM4, /dev/ttyACM0, or auto-detect)")
 @click.option("--baud", "-b", type=int, default=115200, show_default=True, help="Baud rate")
 @click.option("--test", "-t", is_flag=True, help="Run automated peripheral smoke test")
 @click.option("--ping", is_flag=True, help="Ping the Pico controller")
@@ -575,7 +718,7 @@ def run_hardware_test(controller: GH2Controller) -> None:
 @click.pass_context
 def cli(
     ctx: click.Context,
-    port: str,
+    port: Optional[str],
     baud: int,
     test: bool,
     ping: bool,

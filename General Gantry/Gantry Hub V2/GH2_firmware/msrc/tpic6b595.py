@@ -53,6 +53,48 @@ def map_bank_channel_to_bit(bank: int, channel: int, mapping=None) -> int:
     return mapping[bank * 16 + channel]
 
 
+def map_pattern_to_bits(pattern: int, mapping=None) -> int:
+    """
+    Translate a 64-bit logical pattern to physical shift register bit positions.
+
+    Logical layout:
+      - Bank 0: bits 0-15
+      - Bank 1: bits 16-31
+      - Bank 2: bits 32-47
+      - Bank 3: bits 48-63
+    """
+    if not 0 <= pattern <= 0xFFFFFFFFFFFFFFFF:
+        raise ValueError(f"Pattern 0x{pattern:X} out of 64-bit range.")
+    mapped_state = 0
+    for bank in range(4):
+        for ch in range(16):
+            if (pattern >> (bank * 16 + ch)) & 1:
+                bit_pos = map_bank_channel_to_bit(bank, ch, mapping)
+                mapped_state |= (1 << bit_pos)
+    return mapped_state
+
+
+def map_bits_to_pattern(mapped_bits: int, mapping=None) -> int:
+    """
+    Translate a 64-bit physical shift register bit pattern back into a 64-bit logical pattern.
+
+    Logical layout:
+      - Bank 0: bits 0-15
+      - Bank 1: bits 16-31
+      - Bank 2: bits 32-47
+      - Bank 3: bits 48-63
+    """
+    if not 0 <= mapped_bits <= 0xFFFFFFFFFFFFFFFF:
+        raise ValueError(f"Mapped bits 0x{mapped_bits:X} out of 64-bit range.")
+    logical_pattern = 0
+    for bank in range(4):
+        for ch in range(16):
+            bit_pos = map_bank_channel_to_bit(bank, ch, mapping)
+            if (mapped_bits >> bit_pos) & 1:
+                logical_pattern |= (1 << (bank * 16 + ch))
+    return logical_pattern
+
+
 class TPIC6B595Chain:
     """
     Driver for daisy-chained TPIC6B595 power DMOS shift registers.
@@ -135,9 +177,9 @@ class TPIC6B595Chain:
             self.pin_rck.value(1)
             self.pin_rck.value(0)
 
-    def write(self, data: bytes) -> None:
+    def write_raw(self, data: bytes) -> None:
         """
-        Shift out bytes (MSB first) across the daisy chain and latch to outputs.
+        Shift out raw bytes (MSB first) directly across daisy chain and latch to outputs.
         Expects len(data) == num_devices (8 bytes for 64 bits).
         """
         if len(data) != self.num_devices:
@@ -157,16 +199,46 @@ class TPIC6B595Chain:
 
         self.latch()
 
-    def write_int(self, value: int) -> None:
-        """Write integer value (64-bit integer, MSB first) to the shift registers."""
+    def write_raw_int(self, value: int) -> None:
+        """Write raw 64-bit integer directly to shift registers without mapping."""
         if not 0 <= value <= (1 << self.num_bits) - 1:
             raise ValueError(f"Value 0x{value:X} out of {self.num_bits}-bit range")
         data = value.to_bytes(self.num_devices, "big")
-        self.write(data)
+        self.write_raw(data)
+
+    def write_pattern(self, pattern: int) -> None:
+        """
+        Write 64-bit logical pattern (Bank 0: bits 0-15, Bank 1: bits 16-31,
+        Bank 2: bits 32-47, Bank 3: bits 48-63) to shift registers with pin mapping applied.
+        """
+        if not 0 <= pattern <= (1 << self.num_bits) - 1:
+            raise ValueError(f"Pattern 0x{pattern:X} out of {self.num_bits}-bit range")
+        mapped_state = self.map_pattern(pattern)
+        self.write_raw_int(mapped_state)
+
+    def write_int(self, value: int) -> None:
+        """
+        Write 64-bit logical pattern integer to shift registers with pin mapping applied.
+        """
+        self.write_pattern(value)
+
+    def write(self, data: bytes) -> None:
+        """
+        Shift out 8 bytes representing 64-bit logical pattern (MSB first) with pin mapping applied.
+        Expects len(data) == num_devices (8 bytes for 64 bits).
+        """
+        if len(data) != self.num_devices:
+            raise ValueError(f"Expected {self.num_devices} bytes, got {len(data)}")
+        logical_pattern = int.from_bytes(data, "big")
+        self.write_pattern(logical_pattern)
 
     def map_channel(self, bank: int, channel: int) -> int:
         """Translate (bank, channel) to bit position in 64-bit pattern using configured mapping."""
         return map_bank_channel_to_bit(bank, channel, self.channel_map)
+
+    def map_pattern(self, pattern: int) -> int:
+        """Translate a 64-bit logical pattern into physical shift register bit positions."""
+        return map_pattern_to_bits(pattern, self.channel_map)
 
     def write_bank(self, bank: int, value: int) -> None:
         """
@@ -189,7 +261,7 @@ class TPIC6B595Chain:
             else:
                 new_state &= ~(1 << bit_pos)
 
-        self.write_int(new_state)
+        self.write_raw_int(new_state)
 
     def set_channel(self, bank: int, channel: int, state: bool | int) -> None:
         """
@@ -211,7 +283,7 @@ class TPIC6B595Chain:
         else:
             new_state &= ~(1 << bit_pos)
 
-        self.write_int(new_state)
+        self.write_raw_int(new_state)
 
     def get_channel(self, bank: int, channel: int) -> int:
         """Return the state (0 or 1) of the specified channel in the specified bank."""
@@ -228,3 +300,7 @@ class TPIC6B595Chain:
             if (self.state >> bit_pos) & 1:
                 val |= (1 << c)
         return val
+
+    def get_pattern(self) -> int:
+        """Return the 64-bit logical pattern reconstructed from mapped physical shift register bits."""
+        return map_bits_to_pattern(self.state, self.channel_map)

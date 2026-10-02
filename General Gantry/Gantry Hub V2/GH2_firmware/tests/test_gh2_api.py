@@ -13,6 +13,8 @@ from msrc.protocol import ProtocolHandler
 from msrc.tpic6b595 import (
     TPIC6B595Chain,
     map_bank_channel_to_bit,
+    map_pattern_to_bits,
+    map_bits_to_pattern,
     DEFAULT_CHANNEL_MAP,
     PASS_THROUGH_CHANNEL_MAP,
     BANK_0_J6A_MAP,
@@ -76,13 +78,27 @@ class MockShiftRegister:
             return self.channel_map[bank * 16 + channel]
         return DEFAULT_CHANNEL_MAP[bank * 16 + channel]
 
-    def write(self, data: bytes):
+    def map_pattern(self, pattern: int) -> int:
+        return map_pattern_to_bits(pattern, self.channel_map)
+
+    def write_raw(self, data: bytes):
         self.data = bytes(data)
         self.state = int.from_bytes(data, "big")
 
-    def write_int(self, value: int):
+    def write_raw_int(self, value: int):
         self.state = value
         self.data = value.to_bytes(8, "big")
+
+    def write_pattern(self, pattern: int):
+        mapped = self.map_pattern(pattern)
+        self.write_raw_int(mapped)
+
+    def write(self, data: bytes):
+        pattern = int.from_bytes(data, "big")
+        self.write_pattern(pattern)
+
+    def write_int(self, value: int):
+        self.write_pattern(value)
 
     def write_bank(self, bank: int, value: int):
         if not 0 <= bank < self.num_banks:
@@ -97,7 +113,7 @@ class MockShiftRegister:
                 new_state |= (1 << bit_pos)
             else:
                 new_state &= ~(1 << bit_pos)
-        self.write_int(new_state)
+        self.write_raw_int(new_state)
 
     def set_channel(self, bank: int, channel: int, state: bool | int):
         if not 0 <= bank < self.num_banks:
@@ -110,7 +126,7 @@ class MockShiftRegister:
             new_state |= (1 << bit_pos)
         else:
             new_state &= ~(1 << bit_pos)
-        self.write_int(new_state)
+        self.write_raw_int(new_state)
 
     def get_channel(self, bank: int, channel: int) -> int:
         bit_pos = self.map_channel(bank, channel)
@@ -123,6 +139,9 @@ class MockShiftRegister:
             if (self.state >> bit_pos) & 1:
                 val |= (1 << c)
         return val
+
+    def get_pattern(self) -> int:
+        return map_bits_to_pattern(self.state, self.channel_map)
 
     def set_enabled(self, enabled: bool):
         self.enabled = enabled
@@ -200,7 +219,13 @@ def test_protocol_sr_write():
 
     # Valid 16-hex characters (64 bits)
     assert handler.process_command("SR_WRITE AA55AA55AA55AA55") == "OK"
-    assert sr.data == bytes.fromhex("AA55AA55AA55AA55")
+    expected_state = map_pattern_to_bits(0xAA55AA55AA55AA55)
+    assert sr.state == expected_state
+    assert sr.data == expected_state.to_bytes(8, "big")
+    assert sr.get_bank(0) == 0xAA55
+    assert sr.get_bank(1) == 0xAA55
+    assert sr.get_bank(2) == 0xAA55
+    assert sr.get_bank(3) == 0xAA55
 
     # Invalid lengths
     assert handler.process_command("SR_WRITE AA55") == "ERR INVALID_HEX_LENGTH"
@@ -274,6 +299,80 @@ def test_shift_register_mapping():
         return (b * 16 + (15 - c))
     assert map_bank_channel_to_bit(0, 0, mapping=custom_fn) == 15
     assert map_bank_channel_to_bit(0, 15, mapping=custom_fn) == 0
+
+
+def test_map_pattern_to_bits_and_roundtrip():
+    # Pass-through mapping: pattern in == pattern out
+    test_pattern = 0xAAAA5555ABCD1234
+    mapped_pt = map_pattern_to_bits(test_pattern, mapping=PASS_THROUGH_CHANNEL_MAP)
+    assert mapped_pt == test_pattern
+    assert map_bits_to_pattern(mapped_pt, mapping=PASS_THROUGH_CHANNEL_MAP) == test_pattern
+
+    # Default mapping round-trip
+    mapped_default = map_pattern_to_bits(test_pattern)
+    assert map_bits_to_pattern(mapped_default) == test_pattern
+
+    # Test error bounds
+    with pytest.raises(ValueError):
+        map_pattern_to_bits(-1)
+    with pytest.raises(ValueError):
+        map_pattern_to_bits(0x1_00000000_00000000)
+    with pytest.raises(ValueError):
+        map_bits_to_pattern(-1)
+    with pytest.raises(ValueError):
+        map_bits_to_pattern(0x1_00000000_00000000)
+
+
+def test_64bit_pattern_equivalent_to_individual_bank_writes():
+    b0 = 0x1234
+    b1 = 0xABCD
+    b2 = 0x5555
+    b3 = 0xAAAA
+    full_pattern = b0 | (b1 << 16) | (b2 << 32) | (b3 << 48)
+
+    # Chain 1: write banks individually
+    chain1 = TPIC6B595Chain(num_devices=8)
+    chain1.write_bank(0, b0)
+    chain1.write_bank(1, b1)
+    chain1.write_bank(2, b2)
+    chain1.write_bank(3, b3)
+
+    # Chain 2: write full 64-bit pattern via write_int
+    chain2 = TPIC6B595Chain(num_devices=8)
+    chain2.write_int(full_pattern)
+
+    # Chain 3: write full 64-bit pattern via bytes write
+    chain3 = TPIC6B595Chain(num_devices=8)
+    chain3.write(full_pattern.to_bytes(8, "big"))
+
+    # Chain 4: write via write_pattern
+    chain4 = TPIC6B595Chain(num_devices=8)
+    chain4.write_pattern(full_pattern)
+
+    assert chain1.state == chain2.state == chain3.state == chain4.state
+    assert chain2.get_bank(0) == b0
+    assert chain2.get_bank(1) == b1
+    assert chain2.get_bank(2) == b2
+    assert chain2.get_bank(3) == b3
+    assert chain2.get_pattern() == full_pattern
+
+
+def test_all_64_individual_bits_mapping():
+    chain = TPIC6B595Chain(num_devices=8)
+    for bank in range(4):
+        for ch in range(16):
+            logical_bit_index = bank * 16 + ch
+            pattern = 1 << logical_bit_index
+            chain.write_pattern(pattern)
+
+            expected_physical_bit = map_bank_channel_to_bit(bank, ch)
+            assert chain.state == (1 << expected_physical_bit)
+            assert chain.get_channel(bank, ch) == 1
+            assert chain.get_pattern() == pattern
+            for other_b in range(4):
+                for other_c in range(16):
+                    if (other_b, other_c) != (bank, ch):
+                        assert chain.get_channel(other_b, other_c) == 0
 
 
 def test_tpic6b595_chain_standalone():
@@ -482,17 +581,28 @@ def test_controller_loopback_shift_registers(loopback_fixture):
     controller = loopback_fixture["controller"]
     sr = loopback_fixture["sr"]
 
-    # Write as int
+    # Write as int (layout: Bank 0: 0xCDEF, Bank 1: 0x89AB, Bank 2: 0x4567, Bank 3: 0x0123)
     controller.write_shift_registers(0x0123456789ABCDEF)
-    assert sr.data == bytes.fromhex("0123456789ABCDEF")
+    expected = map_pattern_to_bits(0x0123456789ABCDEF)
+    assert sr.state == expected
+    assert sr.data == expected.to_bytes(8, "big")
+    assert sr.get_bank(0) == 0xCDEF
+    assert sr.get_bank(1) == 0x89AB
+    assert sr.get_bank(2) == 0x4567
+    assert sr.get_bank(3) == 0x0123
+    assert sr.get_pattern() == 0x0123456789ABCDEF
 
     # Write as bytes
     controller.write_shift_registers(b"\xAA\x55\xAA\x55\xAA\x55\xAA\x55")
-    assert sr.data == b"\xAA\x55\xAA\x55\xAA\x55\xAA\x55"
+    expected = map_pattern_to_bits(0xAA55AA55AA55AA55)
+    assert sr.state == expected
+    assert sr.data == expected.to_bytes(8, "big")
 
     # Write as list of ints
     controller.write_shift_registers([1, 2, 3, 4, 5, 6, 7, 8])
-    assert sr.data == bytes([1, 2, 3, 4, 5, 6, 7, 8])
+    expected = map_pattern_to_bits(0x0102030405060708)
+    assert sr.state == expected
+    assert sr.data == expected.to_bytes(8, "big")
 
     # Enable and clear
     controller.enable_shift_registers(True)
@@ -797,7 +907,9 @@ def test_sentinel_protocol_handling(loopback_fixture):
     assert handler.process_command("$PING") == "PONG"
     assert handler.process_command("$ PING") == "PONG"
     assert handler.process_command("$SR_WRITE 0123456789ABCDEF") == "OK"
-    assert sr.data == bytes.fromhex("0123456789ABCDEF")
+    expected = map_pattern_to_bits(0x0123456789ABCDEF)
+    assert sr.state == expected
+    assert sr.data == expected.to_bytes(8, "big")
     assert handler.process_command("$DOUT_SET 0 1") == "OK"
     assert handler.process_command("$DOUT_GET 0") == "OK 0:1"
 
@@ -904,3 +1016,47 @@ def test_firmware_heartbeat_timing():
     assert len(toggle_history) == 4
     assert [t for t, _ in toggle_history] == [250, 500, 750, 1000]
     assert [v for _, v in toggle_history] == [1, 0, 1, 0]
+
+
+def test_resolve_serial_port_auto_detect():
+    from unittest.mock import patch, MagicMock
+    from gh2_api import resolve_serial_port
+
+    # Mock comport list containing Pico
+    pico_port = MagicMock()
+    pico_port.device = "COM4"
+    pico_port.vid = 0x2E8A
+    pico_port.pid = 0x0005
+    pico_port.hwid = "USB VID:PID=2E8A:0005 SER=E66480454F75B331"
+    pico_port.description = "USB Serial Device (COM4)"
+    pico_port.manufacturer = "Microsoft"
+
+    acpi_port = MagicMock()
+    acpi_port.device = "COM4"
+    acpi_port.vid = None
+    acpi_port.pid = None
+    acpi_port.hwid = "ACPI\\PNP0501\\11"
+    acpi_port.description = "Communications Port (COM4)"
+    acpi_port.manufacturer = "(Standard port types)"
+
+    with patch("serial.tools.list_ports.comports", return_value=[acpi_port, pico_port]):
+        with patch("gh2_api._get_windows_device_interface_path", return_value=r"\\?\USB#VID_2E8A&PID_0005..."):
+            with patch("sys.platform", "win32"):
+                # Auto-detect should prefer the Pico USB device
+                resolved = resolve_serial_port(None)
+                assert resolved == r"\\?\USB#VID_2E8A&PID_0005..."
+
+                # Explicit COM4 with collision should resolve to the Pico USB interface path
+                resolved_com4 = resolve_serial_port("COM4")
+                assert resolved_com4 == r"\\?\USB#VID_2E8A&PID_0005..."
+
+        # Linux platform test
+        with patch("sys.platform", "linux"):
+            pico_linux = MagicMock()
+            pico_linux.device = "/dev/ttyACM0"
+            pico_linux.vid = 0x2E8A
+            pico_linux.pid = 0x0005
+            pico_linux.hwid = "USB VID:PID=2E8A:0005"
+            with patch("serial.tools.list_ports.comports", return_value=[pico_linux]):
+                resolved_linux = resolve_serial_port(None)
+                assert resolved_linux == "/dev/ttyACM0"

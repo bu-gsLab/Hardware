@@ -249,7 +249,9 @@ class ProtocolHandler:
             else:
                 current_state &= ~(1 << bit_pos)
         self.sr.state = current_state
-        if hasattr(self.sr, "write"):
+        if hasattr(self.sr, "write_raw"):
+            self.sr.write_raw(current_state.to_bytes(8, "big"))
+        elif hasattr(self.sr, "write"):
             self.sr.write(current_state.to_bytes(8, "big"))
 
     def _fallback_set_channel(self, bank: int, channel: int, value: int) -> None:
@@ -261,5 +263,7 @@ class ProtocolHandler:
         else:
             current_state &= ~(1 << bit_pos)
         self.sr.state = current_state
-        if hasattr(self.sr, "write"):
+        if hasattr(self.sr, "write_raw"):
+            self.sr.write_raw(current_state.to_bytes(8, "big"))
+        elif hasattr(self.sr, "write"):
             self.sr.write(current_state.to_bytes(8, "big"))
